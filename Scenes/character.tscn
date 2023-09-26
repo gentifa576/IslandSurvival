@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://p31u03vhrb68"]
 
-[ext_resource type="Script" path="res://Scene/character.gd" id="1_gyfmg"]
+[ext_resource type="Script" path="res://Scripts/character.gd" id="1_ifbs8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8702"]
 
@@ -8,7 +8,7 @@
 size = Vector2(32, 32)
 
 [node name="Character" type="CharacterBody2D"]
-script = ExtResource("1_gyfmg")
+script = ExtResource("1_ifbs8")
 
 [node name="CharacterSprite" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(32, 32)
