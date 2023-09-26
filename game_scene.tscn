@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c05dns70kx3kv"]
 
-[ext_resource type="PackedScene" uid="uid://sa6mkngx312c" path="res://Scene/World.tscn" id="1_th0gs"]
-[ext_resource type="PackedScene" uid="uid://p31u03vhrb68" path="res://Scene/Character.tscn" id="2_3xd1f"]
+[ext_resource type="PackedScene" uid="uid://sa6mkngx312c" path="res://Scene/world.tscn" id="1_th0gs"]
+[ext_resource type="PackedScene" uid="uid://l5r1wqfn1g55" path="res://Scene/player.tscn" id="2_ak8cg"]
 
 [node name="GameScene" type="Node2D"]
 
 [node name="World" parent="." instance=ExtResource("1_th0gs")]
 
-[node name="Character" parent="." instance=ExtResource("2_3xd1f")]
-position = Vector2(582, 290)
-velocity = 32
+[node name="Player" parent="." instance=ExtResource("2_ak8cg")]
+position = Vector2(563, 312)

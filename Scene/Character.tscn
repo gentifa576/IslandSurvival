@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://p31u03vhrb68"]
+[gd_scene load_steps=4 format=3 uid="uid://p31u03vhrb68"]
 
-[ext_resource type="Script" path="res://Scene/character.gd" id="1_lrfr7"]
+[ext_resource type="Script" path="res://Scene/character.gd" id="1_gyfmg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8702"]
 
-[node name="Character" type="Node2D"]
-script = ExtResource("1_lrfr7")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eat3p"]
+size = Vector2(32, 32)
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_gyfmg")
 
 [node name="CharacterSprite" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(32, 32)
@@ -19,8 +22,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_l8702")
 layout_mode = 2
 color = Color(0.913725, 0.54902, 0.458824, 1)
 
-[node name="LeftCollision" type="RayCast2D" parent="."]
-target_position = Vector2(-17, -17)
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
 
-[node name="RightCollision" type="RayCast2D" parent="."]
-target_position = Vector2(17, -17)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eat3p")
+
+[node name="ComponentContainer" type="Node2D" parent="."]
