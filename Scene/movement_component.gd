@@ -1,6 +1,5 @@
 extends BaseComponent
 
-@export var target: CollisionObject2D
 @export var speed = 32
 var is_moving = false
 

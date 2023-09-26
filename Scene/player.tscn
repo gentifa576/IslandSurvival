@@ -5,6 +5,6 @@
 
 [node name="Player" instance=ExtResource("1_gi75r")]
 
-[node name="MovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("target") instance=ExtResource("2_fpcn2")]
-target = NodePath("../..")
+[node name="MovementComponent" parent="ComponentContainer" index="0" instance=ExtResource("2_fpcn2")]
 speed = 128
+target = null

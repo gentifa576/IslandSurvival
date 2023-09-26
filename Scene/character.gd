@@ -5,6 +5,7 @@ var components = []
 func _ready():
 	for component in $ComponentContainer.get_children():
 		if component is BaseComponent:
+			component.target = self
 			components.append(component)
 
 func _process(delta):
