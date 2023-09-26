@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://brrys8advec5v"]
+
+[ext_resource type="Script" path="res://Scenes/testing_scene.gd" id="1_p6scv"]
+[ext_resource type="PackedScene" uid="uid://cg5wndun76j2q" path="res://Scenes/tree.tscn" id="2_63c6o"]
+
+[node name="testing_scene" type="Node2D"]
+script = ExtResource("1_p6scv")
+
+[node name="Tree" parent="." instance=ExtResource("2_63c6o")]
+
+[node name="Camera2D" type="Camera2D" parent="Tree"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(500, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "Wood: "
