@@ -9,4 +9,4 @@
 speed = 3200
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
