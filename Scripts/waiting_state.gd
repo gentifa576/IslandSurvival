@@ -5,7 +5,7 @@ extends BaseState
 func enter():
 	var wait_time = randf_range(2.0, 5.0)
 	timer.wait_time = wait_time
-	print("waiting for ", wait_time)
+#	print("waiting for ", wait_time)
 	timer.start()
 	pass
 	

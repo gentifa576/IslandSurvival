@@ -1,6 +1,6 @@
 extends BaseComponent
 
-@export var speed = 32
+@export var speed = 320
 var is_moving = false
 
 # Called when the node enters the scene tree for the first time.
@@ -11,18 +11,18 @@ func component_process(delta):
 	pass
 	
 func component_physics_process(delta):
-	calculate_movement()
+	calculate_movement(delta)
 	if is_moving:
 		target.move_and_slide()
 	pass
 
-func calculate_movement():
-	var x_axis = Input.get_axis("ui_left", "ui_right")
-	var y_axis = Input.get_axis("ui_up", "ui_down")
+func calculate_movement(delta):
+	var axis = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+#	var y_axis = Input.get_axis("ui_up", "ui_down")
 	if !Input.is_anything_pressed():
 		target.velocity = Vector2.ZERO
 		is_moving = false
 	
 	if Input.is_anything_pressed():
-		target.velocity = Vector2(x_axis, y_axis).normalized() * speed
+		target.velocity = axis.normalized() * speed * delta
 		is_moving = true

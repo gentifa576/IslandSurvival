@@ -6,7 +6,7 @@
 [node name="Player" instance=ExtResource("1_s4ips")]
 
 [node name="MovementComponent" parent="ComponentContainer" index="0" instance=ExtResource("2_t3ryb")]
-speed = 128
+speed = 3200
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
 zoom = Vector2(2.5, 2.5)
