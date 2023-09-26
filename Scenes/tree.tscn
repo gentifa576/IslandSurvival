@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cg5wndun76j2q"]
 
-[ext_resource type="Script" path="res://Scenes/Tree.gd" id="1_ydj7c"]
+[ext_resource type="Script" path="res://Scripts/Tree.gd" id="1_ydj7c"]
 [ext_resource type="Texture2D" uid="uid://dgtccsglyl0nc" path="res://icon.svg" id="2_w7lcq"]
 [ext_resource type="PackedScene" uid="uid://covuxq0613x8r" path="res://Scenes/interactable.tscn" id="3_a0wil"]
 

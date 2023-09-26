@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnq1ux88qs10x"]
+
+[ext_resource type="Script" path="res://Scripts/auto_movement_component.gd" id="1_84qcd"]
+
+[node name="AutoMovementComponent" type="Node2D"]
+script = ExtResource("1_84qcd")

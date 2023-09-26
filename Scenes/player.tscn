@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://l5r1wqfn1g55"]
+[gd_scene load_steps=3 format=3 uid="uid://cpldkwuc1mt1a"]
 
-[ext_resource type="PackedScene" uid="uid://p31u03vhrb68" path="res://Scenes/character.tscn" id="1_s4ips"]
+[ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_s4ips"]
 [ext_resource type="PackedScene" uid="uid://jds8bu6kwcmg" path="res://Scenes/movement_component.tscn" id="2_t3ryb"]
 
 [node name="Player" instance=ExtResource("1_s4ips")]
 
 [node name="MovementComponent" parent="ComponentContainer" index="0" instance=ExtResource("2_t3ryb")]
 speed = 128
+
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+zoom = Vector2(2.5, 2.5)

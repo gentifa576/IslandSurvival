@@ -3,6 +3,9 @@ class_name BaseComponent
 
 @export var target: CollisionObject2D
 
+func initialize():
+	pass
+
 func component_process(delta):
 	pass
 	
