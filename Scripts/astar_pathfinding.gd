@@ -19,7 +19,7 @@ func connect_points():
 		var neighbors = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
 		for neighbor in neighbors:
 			var next_cell = cell + neighbor
-			if used_cells.has(next_cell):
+			if used_cells.has(next_cell) && get_cell_tile_data(0, cell).get_custom_data("walkable") && get_cell_tile_data(0, next_cell).get_custom_data("walkable"):
 				alg.connect_points(id(cell), id(next_cell), false)
 	
 func get_pathfind(start, end):

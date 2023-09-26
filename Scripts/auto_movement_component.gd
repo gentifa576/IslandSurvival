@@ -25,12 +25,11 @@ func calculate_movement(delta):
 		target_reached.emit()
 		is_moving = false
 		return
-	
-#	target.velocity = target.position.direction_to(destination) * speed * delta
+
 	var next_path = destinations[0]
 	var next_path_position = target.curr_world.map_to_local(next_path)
 	target.velocity = target.position.direction_to(next_path_position).normalized() * speed * delta
-	print(target.position, " ", next_path_position, " ", target.velocity, " ", target.position.distance_to(destinations[0]))
+#	print(target.position, " ", next_path_position, " ", target.velocity, " ", target.position.distance_to(destinations[0]))
 	is_moving = true
 
 	if target.position.distance_to(next_path_position) < 1:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c05dns70kx3kv"]
+[gd_scene load_steps=4 format=3 uid="uid://c05dns70kx3kv"]
 
 [ext_resource type="PackedScene" uid="uid://cb3y0bw1vq1ct" path="res://Scenes/world.tscn" id="1_esoee"]
+[ext_resource type="PackedScene" uid="uid://cpldkwuc1mt1a" path="res://Scenes/player.tscn" id="2_jtc5r"]
 [ext_resource type="PackedScene" uid="uid://b5prxw020l8d3" path="res://Scenes/npc.tscn" id="3_5xqrj"]
 
 [node name="GameScene" type="Node2D"]
@@ -10,3 +11,6 @@
 [node name="NPC" parent="." node_paths=PackedStringArray("curr_world") instance=ExtResource("3_5xqrj")]
 position = Vector2(493, 271)
 curr_world = NodePath("../World")
+
+[node name="Player" parent="." instance=ExtResource("2_jtc5r")]
+position = Vector2(536, 233)
