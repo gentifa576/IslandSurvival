@@ -6,9 +6,11 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8702"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eat3p"]
-size = Vector2(32, 32)
+size = Vector2(31, 31)
 
 [node name="Character" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
 floor_snap_length = 2.0
 script = ExtResource("1_ifbs8")
 

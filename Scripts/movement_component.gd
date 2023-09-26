@@ -18,7 +18,6 @@ func component_physics_process(delta):
 
 func calculate_movement(delta):
 	var axis = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-#	var y_axis = Input.get_axis("ui_up", "ui_down")
 	if !Input.is_anything_pressed():
 		target.velocity = Vector2.ZERO
 		is_moving = false

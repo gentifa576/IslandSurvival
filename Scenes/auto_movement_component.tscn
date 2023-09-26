@@ -4,3 +4,11 @@
 
 [node name="AutoMovementComponent" type="Node2D"]
 script = ExtResource("1_84qcd")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 16.0
+target_desired_distance = 16.0
+path_max_distance = 160.0
+avoidance_enabled = true
+radius = 8.0
+debug_enabled = true

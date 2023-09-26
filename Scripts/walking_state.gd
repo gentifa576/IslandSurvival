@@ -4,8 +4,13 @@ extends BaseState
 
 func enter():
 	movement_component.target_reached.connect(reached)
-	var destination = movement_component.target.position + Vector2(randi_range(-5, 5) * 8, randi_range(-5, 5) * 8)
-#	print("moving to ", destination)
+	
+	var destination = randomized_destination()
+	var curr_world = movement_component.target.curr_world
+	while !curr_world.local_to_map_walkable(destination):
+		destination = randomized_destination()
+	destination = curr_world.local_to_map_coord(destination)
+	print("moving to ", destination)
 	movement_component.destination = destination
 	pass
 	
@@ -23,3 +28,6 @@ func physics_process(delta):
 func reached():
 	transition.emit(States.WAIT)
 	pass
+
+func randomized_destination():
+	return movement_component.target.position + (Vector2(randi_range(-5, 5), randi_range(-5, 5)) * 8)

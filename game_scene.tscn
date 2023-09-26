@@ -8,9 +8,13 @@
 
 [node name="World" parent="." instance=ExtResource("1_esoee")]
 
-[node name="NPC" parent="." instance=ExtResource("3_5xqrj")]
-position = Vector2(709, 355)
+[node name="NPC" parent="." node_paths=PackedStringArray("curr_world") instance=ExtResource("3_5xqrj")]
+position = Vector2(863, 478)
 floor_snap_length = 1.0
+curr_world = NodePath("../World")
 
-[node name="Player" parent="." instance=ExtResource("2_jtc5r")]
-position = Vector2(604, 294)
+[node name="Player" parent="." node_paths=PackedStringArray("curr_world") instance=ExtResource("2_jtc5r")]
+position = Vector2(733, 420)
+motion_mode = 0
+wall_min_slide_angle = 0.261799
+curr_world = NodePath("../World")
