@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://p31u03vhrb68"]
+
+[ext_resource type="Script" path="res://Scene/character.gd" id="1_lrfr7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8702"]
+
+[node name="Character" type="Node2D"]
+script = ExtResource("1_lrfr7")
+
+[node name="CharacterSprite" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(32, 32)
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l8702")
+
+[node name="ColorRect" type="ColorRect" parent="CharacterSprite"]
+layout_mode = 2
+color = Color(0.913725, 0.54902, 0.458824, 1)
+
+[node name="LeftCollision" type="RayCast2D" parent="."]
+target_position = Vector2(-17, -17)
+
+[node name="RightCollision" type="RayCast2D" parent="."]
+target_position = Vector2(17, -17)
