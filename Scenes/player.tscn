@@ -1,12 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpldkwuc1mt1a"]
+[gd_scene load_steps=6 format=3 uid="uid://cpldkwuc1mt1a"]
 
 [ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_s4ips"]
 [ext_resource type="PackedScene" uid="uid://jds8bu6kwcmg" path="res://Scenes/movement_component.tscn" id="2_t3ryb"]
+[ext_resource type="PackedScene" uid="uid://bqpjc7a0maqs1" path="res://Scenes/dialog_component.tscn" id="3_vpicb"]
+[ext_resource type="PackedScene" uid="uid://dspgmekg055h2" path="res://Scenes/States/player_dialog_state.tscn" id="4_har5j"]
+[ext_resource type="PackedScene" uid="uid://midd2jtm5y3i" path="res://Scenes/States/player_walking_state.tscn" id="5_txu31"]
 
 [node name="Player" instance=ExtResource("1_s4ips")]
+collision_mask = 1
 
-[node name="MovementComponent" parent="ComponentContainer" index="0" instance=ExtResource("2_t3ryb")]
+[node name="InteractDetection" type="RayCast2D" parent="." index="2"]
+target_position = Vector2(0, 32)
+collision_mask = 2
+
+[node name="MovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("interaction_detector", "target") instance=ExtResource("2_t3ryb")]
 speed = 3200
+interaction_detector = NodePath("../../InteractDetection")
+target = NodePath("../..")
 
-[node name="Camera2D" type="Camera2D" parent="." index="3"]
+[node name="DialogComponent" parent="ComponentContainer" index="1" node_paths=PackedStringArray("dialog_raycast", "target") instance=ExtResource("3_vpicb")]
+dialog_raycast = NodePath("../../InteractDetection")
+target = NodePath("../..")
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
 zoom = Vector2(2, 2)
+
+[node name="StateManager" parent="." index="5"]
+current_state = 1
+
+[node name="PlayerDialogState" parent="StateManager" index="0" node_paths=PackedStringArray("dialog_component") instance=ExtResource("4_har5j")]
+dialog_component = NodePath("../../ComponentContainer/DialogComponent")
+
+[node name="PlayerWalkingState" parent="StateManager" index="1" node_paths=PackedStringArray("movement_component") instance=ExtResource("5_txu31")]
+movement_component = NodePath("../../ComponentContainer/MovementComponent")
+
+[connection signal="close_dialog" from="ComponentContainer/DialogComponent" to="StateManager/PlayerDialogState" method="_on_dialog_component_close_dialog"]
+[connection signal="start_dialog" from="ComponentContainer/DialogComponent" to="StateManager/PlayerDialogState" method="_on_dialog_component_start_dialog"]

@@ -9,8 +9,20 @@
 [node name="World" parent="." instance=ExtResource("1_esoee")]
 
 [node name="NPC" parent="." node_paths=PackedStringArray("curr_world") instance=ExtResource("3_5xqrj")]
-position = Vector2(493, 271)
+position = Vector2(460, 262)
+curr_world = NodePath("../World")
+
+[node name="NPC2" parent="." node_paths=PackedStringArray("curr_world") instance=ExtResource("3_5xqrj")]
+position = Vector2(511, 362)
+curr_world = NodePath("../World")
+
+[node name="NPC3" parent="." node_paths=PackedStringArray("curr_world") instance=ExtResource("3_5xqrj")]
+position = Vector2(669, 272)
+curr_world = NodePath("../World")
+
+[node name="NPC4" parent="." node_paths=PackedStringArray("curr_world") instance=ExtResource("3_5xqrj")]
+position = Vector2(749, 359)
 curr_world = NodePath("../World")
 
 [node name="Player" parent="." instance=ExtResource("2_jtc5r")]
-position = Vector2(536, 233)
+position = Vector2(549, 221)

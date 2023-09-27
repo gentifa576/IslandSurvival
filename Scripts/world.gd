@@ -17,7 +17,10 @@ func _process(delta):
 func local_to_map_walkable(coord):
 	var map_coord = tile_map.local_to_map(coord)
 	var tile_data = tile_map.get_cell_tile_data(0, map_coord)
-	return tile_data.get_custom_data("walkable")
+	if tile_data:
+		return tile_data.get_custom_data("walkable")
+	else:
+		false
 
 func local_to_map_coord(coord):
 	var map_coord = tile_map.local_to_map(coord)
@@ -29,7 +32,7 @@ func map_to_local(coord):
 
 func get_pathfind(start, end):
 	var path = tile_map.get_pathfind(start, end)
-	print(path)
+#	print(path)
 	return path
 
 func _input(event):

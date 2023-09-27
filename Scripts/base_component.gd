@@ -1,7 +1,7 @@
 extends Node
 class_name BaseComponent
 
-@export var target: CollisionObject2D
+@export var target: Character
 
 func initialize():
 	pass

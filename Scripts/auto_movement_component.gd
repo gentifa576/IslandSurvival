@@ -6,15 +6,22 @@ signal target_reached
 @export var speed = 320
 var destinations: PackedVector2Array
 var is_moving = false
+var pause = false
 
 func initialize():
 	destinations = []
 	pass
 
 func component_process(delta):
+	if pause:
+		return
+	
 	pass
 	
 func component_physics_process(delta):
+	if pause:
+		return
+	
 	calculate_movement(delta)
 	if is_moving:
 		target.move_and_slide()
