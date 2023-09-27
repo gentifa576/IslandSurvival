@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dspgmekg055h2"]
+
+[ext_resource type="Script" path="res://Scripts/player_dialog_state.gd" id="1_e2w3a"]
+
+[node name="PlayerDialogState" type="Node2D"]
+script = ExtResource("1_e2w3a")
+state = 2

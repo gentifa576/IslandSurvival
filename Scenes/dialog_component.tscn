@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqpjc7a0maqs1"]
+
+[ext_resource type="Script" path="res://Scripts/dialog_component.gd" id="1_foamn"]
+
+[node name="DialogComponent" type="Node2D"]
+script = ExtResource("1_foamn")
+
+[node name="Container" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1150.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="InteractionContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TalkButton" type="Button" parent="Container/InteractionContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Click here to talk"
+
+[node name="GiftButton" type="Button" parent="Container/InteractionContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Click here to gift"
+
+[node name="CloseButton" type="Button" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
