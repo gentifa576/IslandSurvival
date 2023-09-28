@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://ds7n6wxr5f1wr" path="res://Scenes/States/npc_dialog_state.tscn" id="6_jrb5q"]
 
 [node name="NPC" instance=ExtResource("1_foj0a")]
-collision_mask = 1
+z_index = 10
+collision_layer = 1024
 
 [node name="ColorRect" parent="CharacterSprite" index="0"]
 color = Color(0.780392, 0.764706, 0.470588, 1)

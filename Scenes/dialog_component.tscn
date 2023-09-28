@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/dialog_component.gd" id="1_foamn"]
 
 [node name="DialogComponent" type="Node2D"]
+visible = false
 script = ExtResource("1_foamn")
 component_type = 2
 

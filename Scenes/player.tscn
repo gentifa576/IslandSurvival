@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://midd2jtm5y3i" path="res://Scenes/States/player_walking_state.tscn" id="5_txu31"]
 
 [node name="Player" instance=ExtResource("1_s4ips")]
-collision_mask = 1
+z_index = 10
+collision_layer = 512
 
 [node name="InteractDetection" type="RayCast2D" parent="." index="2"]
 target_position = Vector2(0, 32)
-collision_mask = 2
+collision_mask = 1024
 
 [node name="MovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("interaction_detector", "target") instance=ExtResource("2_t3ryb")]
 speed = 3200

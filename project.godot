@@ -61,7 +61,10 @@ Interact={
 
 [layer_names]
 
-2d_navigation/layer_1="Pathfinding"
+2d_physics/layer_1="Tiles"
+2d_physics/layer_2="Obstacles"
+2d_physics/layer_10="Player"
+2d_physics/layer_11="NPC"
 
 [rendering]
 

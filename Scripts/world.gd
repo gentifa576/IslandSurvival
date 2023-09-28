@@ -35,10 +35,10 @@ func get_pathfind(start, end):
 #	print(path)
 	return path
 
-func _input(event):
-	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			start = local_to_map_coord(event.global_position)
-		else:
-			end = local_to_map_coord(event.global_position)
+#func _input(event):
+#	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
+#		if event.pressed:
+#			start = local_to_map_coord(event.global_position)
+#		else:
+#			end = local_to_map_coord(event.global_position)
 #			print(get_pathfind(start, end))

@@ -11,7 +11,7 @@ func _ready():
 
 func add_points():
 	for cell in used_cells:
-		if get_cell_tile_data(0, cell).get_custom_data("walkable"):
+		if walkable_cell(cell):
 			alg.add_point(id(cell), cell, 1.0)
 	
 func connect_points():
@@ -19,7 +19,7 @@ func connect_points():
 		var neighbors = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
 		for neighbor in neighbors:
 			var next_cell = cell + neighbor
-			if used_cells.has(next_cell) && get_cell_tile_data(0, cell).get_custom_data("walkable") && get_cell_tile_data(0, next_cell).get_custom_data("walkable"):
+			if used_cells.has(next_cell) && walkable_cell(cell) && walkable_cell(next_cell):
 				alg.connect_points(id(cell), id(next_cell), false)
 	
 func get_pathfind(start, end):
@@ -30,3 +30,8 @@ func get_pathfind(start, end):
 	
 func id(point):
 	return (point.x + point.y) * (point.x + point.y + 1) / 2 + point.y
+
+func walkable_cell(cell):
+	if get_cell_tile_data(1,cell):
+		return false
+	return get_cell_tile_data(0, cell).get_custom_data("walkable")
