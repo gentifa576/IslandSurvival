@@ -24,7 +24,8 @@ func connect_points():
 	
 func get_pathfind(start, end):
 	var path: PackedVector2Array = alg.get_point_path(id(start), id(end))
-	path.remove_at(0)
+	if (path.size() > 0):
+		path.remove_at(0)
 	return path
 	
 func id(point):

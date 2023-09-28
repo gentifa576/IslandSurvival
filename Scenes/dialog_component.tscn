@@ -4,6 +4,7 @@
 
 [node name="DialogComponent" type="Node2D"]
 script = ExtResource("1_foamn")
+component_type = 2
 
 [node name="Container" type="MarginContainer" parent="."]
 anchors_preset = 15
