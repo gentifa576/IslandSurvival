@@ -15,7 +15,7 @@ func enter():
 	while !curr_world.local_to_map_walkable(destination):
 		destination = randomized_destination()
 	destination = curr_world.local_to_map_coord(destination)
-#	print("moving to ", destination)
+	print("moving to ", destination)
 	var val = curr_world.get_pathfind(curr_world.local_to_map_coord(target.position), destination)
 	movement_component.destinations = val
 	movement_component.pause = false
