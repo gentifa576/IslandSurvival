@@ -4,7 +4,7 @@ var noise = FastNoiseLite.new()
 var chunk_size = 64
 var tile_size = 32
 var generated_chunks = {} 
-@onready var player:CharacterBody2D = get_parent().get_node("Player")
+@onready var player:CharacterBody2D = get_parent().get_parent().get_node("Player")
 @onready var npc_scene = preload("res://Scenes/npc.tscn")
 @onready var tile_map:TileMap = self
 @export var island_size:float = 20
@@ -26,7 +26,7 @@ func _ready():
 	player.position = spawn_location() * tile_size 
 	#spawn npc currently bugged 
 #	spawn_npcs(5)
-	get_parent().get_node("NPC").position = spawn_location() * tile_size
+	get_parent().get_parent().get_node("NPC").position = spawn_location() * tile_size
 	update_chunks_around_player()
 
 
