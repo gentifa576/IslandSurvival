@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://byn5bedg051p"]
+[gd_scene load_steps=2 format=3 uid="uid://jsdhibt15dav"]
 
-[ext_resource type="Script" path="res://Scripts/StateManager.gd" id="1_2o8k4"]
+[ext_resource type="Script" path="res://Scripts/state_manager.gd" id="1_upj5u"]
 
 [node name="StateManager" type="Node2D"]
-script = ExtResource("1_2o8k4")
+script = ExtResource("1_upj5u")
