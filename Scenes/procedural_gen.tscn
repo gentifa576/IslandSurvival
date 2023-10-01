@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnba6elaf0wur"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_fbju1"]
+[ext_resource type="TileSet" uid="uid://cwof2kkqk23cl" path="res://Scenes/world.tres" id="1_ldcgj"]
+[ext_resource type="Script" path="res://Scenes/tile_map.gd" id="2_wkmda"]
+[ext_resource type="PackedScene" uid="uid://bla638kwwba13" path="res://Scenes/player.tscn" id="3_1jh1b"]
+[ext_resource type="PackedScene" uid="uid://b4gw83ipi6eia" path="res://Scenes/npc.tscn" id="5_6f1dr"]
+
+[node name="ProceduralGen_World" type="Node2D"]
+script = ExtResource("1_fbju1")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_ldcgj")
+format = 2
+script = ExtResource("2_wkmda")
+
+[node name="Player" parent="." node_paths=PackedStringArray("curr_world") instance=ExtResource("3_1jh1b")]
+curr_world = NodePath("..")
+
+[node name="NPC" parent="." node_paths=PackedStringArray("curr_world") instance=ExtResource("5_6f1dr")]
+curr_world = NodePath("..")

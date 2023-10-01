@@ -1,13 +1,13 @@
-extends AstarPathfinding
+extends Node2D
 
 var noise = FastNoiseLite.new()
 var chunk_size = 64
 var tile_size = 32
 var generated_chunks = {} 
-@onready var player:CharacterBody2D = get_parent().get_node("Player")
+@onready var player:CharacterBody2D = get_node("Player")
 @onready var npc_scene = preload("res://Scenes/npc.tscn")
-@onready var tile_map:TileMap = self
-@export var island_size:float = 20
+@onready var tile_map:TileMap = get_node("TileMap")
+@export var island_size:float = 40
 var WORLD_SIZE = island_size * 2
 
 #naive 2 tile solution for atlas
@@ -24,9 +24,7 @@ func _ready():
 	noise.frequency = 0.02
 	generate_chunk(Vector2i(0,0))
 	player.position = spawn_location() * tile_size 
-	#spawn npc currently bugged 
-#	spawn_npcs(5)
-	get_parent().get_node("NPC").position = spawn_location() * tile_size
+	spawn_npcs(5)
 	update_chunks_around_player()
 
 
@@ -86,9 +84,6 @@ func spawn_npcs(count:int):
 func generate_npc(pos:Vector2):
 	var npc = npc_scene.instantiate()
 	npc.position = position
-	#need to specify curr_world - this is current an exported var in the NPC
-	#need to pass curr_world at runtime, use parent node
-	npc.curr_world = get_parent()
 	self.add_child(npc)
 	
 	

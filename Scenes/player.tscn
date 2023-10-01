@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpldkwuc1mt1a"]
+[gd_scene load_steps=6 format=3 uid="uid://bla638kwwba13"]
 
-[ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_s4ips"]
-[ext_resource type="PackedScene" uid="uid://jds8bu6kwcmg" path="res://Scenes/movement_component.tscn" id="2_t3ryb"]
-[ext_resource type="PackedScene" uid="uid://bqpjc7a0maqs1" path="res://Scenes/dialog_component.tscn" id="3_vpicb"]
+[ext_resource type="PackedScene" path="res://Scenes/character.tscn" id="1_s4ips"]
+[ext_resource type="PackedScene" path="res://Scenes/movement_component.tscn" id="2_t3ryb"]
+[ext_resource type="PackedScene" uid="uid://qt3fs80beqjh" path="res://Scenes/dialog_component.tscn" id="3_vpicb"]
 [ext_resource type="PackedScene" uid="uid://dspgmekg055h2" path="res://Scenes/States/player_dialog_state.tscn" id="4_har5j"]
 [ext_resource type="PackedScene" uid="uid://midd2jtm5y3i" path="res://Scenes/States/player_walking_state.tscn" id="5_txu31"]
 
@@ -15,7 +15,7 @@ target_position = Vector2(0, 32)
 collision_mask = 1024
 
 [node name="MovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("interaction_detector", "target") instance=ExtResource("2_t3ryb")]
-speed = 3200
+speed = 8405
 interaction_detector = NodePath("../../InteractDetection")
 target = NodePath("../..")
 
