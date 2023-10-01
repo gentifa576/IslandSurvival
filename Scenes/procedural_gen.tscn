@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://cwof2kkqk23cl" path="res://Scenes/world.tres" id="1_ldcgj"]
 [ext_resource type="PackedScene" uid="uid://bla638kwwba13" path="res://Scenes/player.tscn" id="3_1jh1b"]
 [ext_resource type="Script" path="res://Scripts/tile_map.gd" id="3_37emn"]
-[ext_resource type="PackedScene" uid="uid://b4gw83ipi6eia" path="res://Scenes/npc.tscn" id="5_6f1dr"]
+[ext_resource type="PackedScene" uid="uid://b5prxw020l8d3" path="res://Scenes/npc.tscn" id="5_6f1dr"]
 
 [node name="procgen" type="Node2D"]
 
