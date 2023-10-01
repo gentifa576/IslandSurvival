@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5prxw020l8d3"]
+[gd_scene load_steps=7 format=3 uid="uid://b4gw83ipi6eia"]
 
-[ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_foj0a"]
-[ext_resource type="PackedScene" uid="uid://cnq1ux88qs10x" path="res://Scenes/auto_movement_component.tscn" id="2_ovrdj"]
+[ext_resource type="PackedScene" path="res://Scenes/character.tscn" id="1_foj0a"]
+[ext_resource type="PackedScene" uid="uid://bixcgee8vg7da" path="res://Scenes/auto_movement_component.tscn" id="2_ovrdj"]
 [ext_resource type="PackedScene" uid="uid://4uqt0uve0510" path="res://Scenes/States/npc_waiting_state.tscn" id="4_o2g0w"]
 [ext_resource type="PackedScene" uid="uid://cb12vcailxu58" path="res://Scenes/States/npc_walking_state.tscn" id="5_2x36h"]
 [ext_resource type="Script" path="res://Scripts/Label.gd" id="5_3xpj3"]
 [ext_resource type="PackedScene" uid="uid://ds7n6wxr5f1wr" path="res://Scenes/States/npc_dialog_state.tscn" id="6_jrb5q"]
 
-[node name="NPC" instance=ExtResource("1_foj0a")]
+[node name="NPC" groups=["npc"] instance=ExtResource("1_foj0a")]
 collision_mask = 1
 
 [node name="ColorRect" parent="CharacterSprite" index="0"]

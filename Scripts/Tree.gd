@@ -16,6 +16,7 @@ func _process(delta):
 	if in_progress:
 		current_progress += progress_speed * delta
 		check_completed()
+		
 
 func check_completed():
 	if current_progress >= completion_time:

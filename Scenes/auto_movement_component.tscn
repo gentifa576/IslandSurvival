@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnq1ux88qs10x"]
+[gd_scene load_steps=2 format=3 uid="uid://bixcgee8vg7da"]
 
 [ext_resource type="Script" path="res://Scripts/auto_movement_component.gd" id="1_84qcd"]
 
