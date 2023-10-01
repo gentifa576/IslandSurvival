@@ -91,7 +91,7 @@ func spawn_location()->Vector2:
 	var center = Vector2(island_size, island_size)
 	var search_radius = 20
 	
-	for radius in range(0,island_size):
+	for radius in range(0,island_size,1):
 		for angle in range(0,360,5):
 			var radians = angle * PI / 180.0
 			var x = center.x + radius * cos(radians)
@@ -102,6 +102,7 @@ func spawn_location()->Vector2:
 
 func valid_spawn(x,y)->bool:
 	var tile_type = tile_map.get_cell_atlas_coords(0,Vector2i(x*tile_size,y*tile_size))
+	print(tile_type + "tile")
 	if tile_type == ground_tile:
 		print(x,y)
 		return true

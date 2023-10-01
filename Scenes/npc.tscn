@@ -15,6 +15,7 @@ color = Color(0.780392, 0.764706, 0.470588, 1)
 
 [node name="AutoMovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("target") instance=ExtResource("2_ovrdj")]
 speed = 2000
+component_type = null
 target = NodePath("../..")
 
 [node name="Label" type="Label" parent="StateManager" index="0"]
