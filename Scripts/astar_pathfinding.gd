@@ -15,7 +15,7 @@ func _ready():
 	alg.update()
 	
 	add_obstacles()
-
+	
 func add_obstacles():
 	for cell in used_cells:
 		if !walkable_cell(cell):

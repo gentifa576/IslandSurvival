@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bla638kwwba13"]
 
-[ext_resource type="PackedScene" path="res://Scenes/character.tscn" id="1_s4ips"]
-[ext_resource type="PackedScene" path="res://Scenes/movement_component.tscn" id="2_t3ryb"]
+[ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_s4ips"]
+[ext_resource type="PackedScene" uid="uid://jds8bu6kwcmg" path="res://Scenes/movement_component.tscn" id="2_t3ryb"]
 [ext_resource type="PackedScene" uid="uid://qt3fs80beqjh" path="res://Scenes/dialog_component.tscn" id="3_vpicb"]
 [ext_resource type="PackedScene" uid="uid://dspgmekg055h2" path="res://Scenes/States/player_dialog_state.tscn" id="4_har5j"]
 [ext_resource type="PackedScene" uid="uid://midd2jtm5y3i" path="res://Scenes/States/player_walking_state.tscn" id="5_txu31"]
@@ -24,7 +24,7 @@ dialog_raycast = NodePath("../../InteractDetection")
 target = NodePath("../..")
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
-zoom = Vector2(2, 2)
+zoom = Vector2(0.7, 0.7)
 
 [node name="StateManager" parent="." index="5"]
 current_state = 1

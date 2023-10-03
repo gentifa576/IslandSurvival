@@ -3,6 +3,8 @@ extends BaseState
 @export var movement_component: AutoMovementComponent
 @export var movement_range: float
 
+@onready var timer: Timer = $Timer
+
 var path: PackedVector2Array
 var destination
 
@@ -12,13 +14,13 @@ func enter():
 	destination = randomized_destination()
 	var target = movement_component.target
 	var curr_world = target.curr_world
-	while !curr_world.local_to_map_walkable(destination):
-		destination = randomized_destination()
+	find_random_target(curr_world)
 	destination = curr_world.local_to_map_coord(destination)
 	print("moving to ", destination)
-	var val = curr_world.get_pathfind(curr_world.local_to_map_coord(target.position), destination)
-	movement_component.destinations = val
-	movement_component.pause = false
+	if destination:
+		var val = curr_world.get_pathfind(curr_world.local_to_map_coord(target.position), destination)
+		movement_component.destinations = val
+		movement_component.pause = false
 	pass
 	
 func exit():
@@ -31,6 +33,15 @@ func process(delta):
 
 func physics_process(delta):
 	pass
+
+func find_random_target(curr_world):
+	timer.start()
+	while !timer.is_stopped() && !curr_world.local_to_map_walkable(destination):
+		destination = randomized_destination()
+	
+	if !destination:
+		print("can't find destination")
+		transition.emit(States.WAIT)
 
 #func _unhandled_input(event):
 #	if event is InputEventMouseButton && event.pressed:
