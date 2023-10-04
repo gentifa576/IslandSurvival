@@ -9,16 +9,15 @@
 [node name="World" type="Node2D" parent="."]
 script = ExtResource("1_fbju1")
 
-[node name="TileMap" type="TileMap" parent="World" node_paths=PackedStringArray("parent_node")]
+[node name="TileMap" type="TileMap" parent="World"]
 tile_set = ExtResource("1_ldcgj")
 format = 2
 script = ExtResource("3_37emn")
-parent_node = NodePath("../..")
 
 [node name="DayTimer" type="Timer" parent="World"]
-wait_time = 540.0
+wait_time = 5.0
 one_shot = true
 
 [node name="NightTimer" type="Timer" parent="World"]
-wait_time = 60.0
+wait_time = 5.0
 one_shot = true

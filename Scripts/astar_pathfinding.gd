@@ -5,7 +5,7 @@ class_name AstarPathfinding
 @onready var used_cells = get_used_cells(0)
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func generate_pathfind():
 	alg.region = self.get_used_rect()
 	alg.cell_size = Vector2(32, 32)
 	alg.offset = alg.cell_size / 2
