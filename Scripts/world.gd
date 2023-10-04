@@ -2,16 +2,24 @@ extends Node2D
 class_name World
 
 @onready var tile_map: AstarPathfinding = $TileMap
-var start
-var end
+@onready var day_timer: Timer = $DayTimer
+@onready var night_timer: Timer = $NightTimer
+var day_transition_progress: float = 1.0:
+	set(val):
+		day_transition_progress = min(1, max(0, val))
+		pass
+var day_transition_target = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	day_timer.timeout.connect(day_end)
+	night_timer.timeout.connect(night_end)
+	day_timer.start()
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	tile_map.set_layer_modulate(0, transition_progress(delta))
 	pass
 
 func local_to_map_walkable(coord):
@@ -20,7 +28,7 @@ func local_to_map_walkable(coord):
 	if tile_data:
 		return tile_data.get_custom_data("walkable")
 	else:
-		false
+		return false
 
 func local_to_map_coord(coord):
 	var map_coord = tile_map.local_to_map(coord)
@@ -32,13 +40,27 @@ func map_to_local(coord):
 
 func get_pathfind(start, end):
 	var path = tile_map.get_pathfind(start, end)
-#	print(path)
 	return path
 
-#func _input(event):
-#	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
-#		if event.pressed:
-#			start = local_to_map_coord(event.global_position)
-#		else:
-#			end = local_to_map_coord(event.global_position)
-#			print(get_pathfind(start, end))
+func day_end():
+	print("day end")
+	night_timer.start()
+	day_transition_target = 0
+	pass
+
+func night_end():
+	print("night end")
+	day_timer.start()
+	day_transition_target = 1
+	pass
+
+func transition_progress(delta):
+	var operator
+	if day_transition_target == 0:
+		operator = 1
+	elif day_transition_target == 1:
+		operator = -1
+	day_transition_progress -= 0.5 * delta * operator
+#	print(day_transition_progress)
+	return lerp(Color.DARK_BLUE, Color.WHITE, day_transition_progress)
+	pass

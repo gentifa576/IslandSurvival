@@ -14,3 +14,11 @@ tile_set = ExtResource("1_ldcgj")
 format = 2
 script = ExtResource("3_37emn")
 parent_node = NodePath("../..")
+
+[node name="DayTimer" type="Timer" parent="World"]
+wait_time = 540.0
+one_shot = true
+
+[node name="NightTimer" type="Timer" parent="World"]
+wait_time = 60.0
+one_shot = true

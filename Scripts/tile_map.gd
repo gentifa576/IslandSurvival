@@ -24,9 +24,11 @@ var water_tile = Vector2i(1,0)
 
 
 func _ready():
-	noise.seed = randi() + 1
+#	noise.seed = randi() + 1
 # Seed with no land
 #	noise.seed = -1779600403
+	noise.seed = 1340113787
+#	noise.seed = 414202871
 	print(noise.seed)
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	noise.frequency = 0.01
@@ -80,7 +82,7 @@ func get_island_noise(coord: Vector2i, island_radius:float) -> float:
 	var dist_x = coord.x - island_radius
 	var dist_y = coord.y - island_radius
 	var center_distance = sqrt(pow(dist_x,2.0)+pow(dist_y,2.0))
-	if center_distance > island_radius * 0.9:
+	if center_distance > island_radius * 0.7:
 		return -1
 	var island_shape:float = max(0., (island_radius - center_distance) / island_radius)
 	var noise_value:float = noise.get_noise_2d(coord.x, coord.y)
@@ -91,9 +93,9 @@ func spawn_npcs(count:int):
 		var spawn_location = spawn_location_vector * tile_size
 		generate_npc(spawn_location)
 
-func generate_npc(pos:Vector2):
+func generate_npc(pos):
 	var npc = npc_scene.instantiate()
-	npc.position = spawn_location_vector * tile_size
+	npc.position = map_coord_to_local(spawn_location_vector)
 	#need to specify curr_world - this is current an exported var in the NPC
 	#need to pass curr_world at runtime, use parent node
 	npc.curr_world = get_parent()
@@ -101,27 +103,29 @@ func generate_npc(pos:Vector2):
 	
 func spawn_player():
 	var player = player_scene.instantiate()
-	player.position = spawn_location_vector * tile_size
+	player.position = map_coord_to_local(spawn_location_vector)
 	player.curr_world = get_parent()
 	self.player = player
 	parent_node.add_child(player)
 	
-func spawn_location()->Vector2:
+func spawn_location() -> Vector2i:
 	var center = Vector2(island_size, island_size)
-	
-	for radius in range(0,island_size,1):
-		for angle in range(0,360,5):
+
+	for radius in range(0, island_size, 1):
+		for angle in range(0, 360, 5):
 			var radians = angle * PI / 180.0
 			var x = center.x + radius * cos(radians)
 			var y = center.y + radius * sin(radians)
 			if valid_spawn(x, y):
 				print(x * tile_size, " ", y * tile_size)
-				return Vector2(x,y)
+				return Vector2i(x, y)
 	return center
 
-func valid_spawn(x,y)->bool:
+func valid_spawn(x, y)->bool:
 	var tile_data = tile_map.get_cell_tile_data(0, Vector2(x, y))
 	if tile_data:
 		return tile_data.get_custom_data("walkable")
 	return false
 
+func map_coord_to_local(map_coord: Vector2i):
+	return map_coord * tile_size + Vector2i(tile_size, tile_size) / 2

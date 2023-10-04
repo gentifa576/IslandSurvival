@@ -23,7 +23,7 @@ func add_obstacles():
 	
 func get_pathfind(start, end):
 	var path: PackedVector2Array = alg.get_point_path(start, end)
-	print(path)
+#	print(path)
 	if (path.size() > 0):
 		path.remove_at(0)
 	return path
