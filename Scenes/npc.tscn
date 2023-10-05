@@ -11,6 +11,7 @@
 [node name="NPC" instance=ExtResource("1_foj0a")]
 z_index = 10
 collision_layer = 1024
+collision_mask = 7
 
 [node name="ColorRect" parent="CharacterSprite" index="0"]
 color = Color(0.780392, 0.764706, 0.470588, 1)

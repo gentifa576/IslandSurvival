@@ -1,16 +1,18 @@
 extends BaseState
 
 @export var movement_component: MovementComponent
-@export var dialog_component: DialogComponent
+#@export var building_component: BuildingComponent
+
+var direction
 
 func enter():
 	movement_component.paused = false
-	dialog_component.set_process_input(true)
+#	building_component.can_build = true
 	pass
 	
 func exit():
 	movement_component.paused = true
-	dialog_component.set_process_input(false)
+#	building_component.can_build = false
 	pass
 
 func process(delta):

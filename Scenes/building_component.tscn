@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://bttwdk4fk5ii2"]
+
+[ext_resource type="Script" path="res://Scripts/building_component.gd" id="1_n6nmo"]
+[ext_resource type="Image" uid="uid://ggxvwdg2qlbd" path="res://Asset/Image/house_structure.png" id="2_cf7ug"]
+[ext_resource type="PackedScene" uid="uid://cfuufdotmn0kk" path="res://Scenes/structure.tscn" id="2_gs4qd"]
+[ext_resource type="PackedScene" uid="uid://m7p24r46xe75" path="res://Scenes/structure_placement.tscn" id="2_i2pv0"]
+
+[node name="BuildingComponent" type="Node2D"]
+script = ExtResource("1_n6nmo")
+temp_asset = ExtResource("2_cf7ug")
+build_placement = ExtResource("2_i2pv0")
+build_target = ExtResource("2_gs4qd")
+component_type = 4

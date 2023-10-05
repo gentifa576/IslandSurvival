@@ -4,6 +4,7 @@ class_name World
 @onready var tile_map: AstarPathfinding = $TileMap
 @onready var day_timer: Timer = $DayTimer
 @onready var night_timer: Timer = $NightTimer
+@onready var structure_container: StructureContainer = $StructureContainer
 @onready var npc_scene = preload("res://Scenes/npc.tscn")
 @onready var player_scene = preload("res://Scenes/player.tscn")
 
@@ -30,8 +31,8 @@ func _ready():
 	day_timer.start()
 	
 #	noise.seed = randi() + 1
-#	noise.seed = -1779600403
-	noise.seed = 1340113787
+	noise.seed = -1779600403
+#	noise.seed = 1340113787
 #	noise.seed = 414202871
 	print(noise.seed)
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
@@ -39,7 +40,7 @@ func _ready():
 	generate_chunk(Vector2i(0,0))
 	update_surrounding_chunks(Vector2i(0,0))
 	spawn_location_vector = spawn_location()
-	call_deferred("spawn_npcs", 5)
+	call_deferred("spawn_npcs", 3)
 	call_deferred("spawn_player")
 	pass # Replace with function body.
 
@@ -72,7 +73,10 @@ func get_pathfind(start, end):
 func world_to_chunk(pos: Vector2) -> Vector2i:
 	return Vector2i(int(pos.x / (tile_size * chunk_size)), int(pos.y / (tile_size * chunk_size)))
 
-# Generate chunks around the player
+func update_pathfinding():
+	if tile_map.alg.is_dirty():
+		tile_map.alg.update()
+	
 func update_chunks_around_player():
 	var current_chunk = world_to_chunk(player.position)
 	update_surrounding_chunks(current_chunk)
@@ -85,6 +89,7 @@ func update_surrounding_chunks(current_chunk):
 				generate_chunk(chunk_pos)
 				tile_map.generate_pathfind()
 				generated_chunks[chunk_pos] = true
+	update_pathfinding()
 
 func generate_chunk(chunk_pos:Vector2i):
 	var offset = chunk_pos * chunk_size * tile_size
@@ -97,7 +102,6 @@ func generate_chunk(chunk_pos:Vector2i):
 			else:
 				tile_map.set_cell(0,coord,2,water_tile)
 		pass
-		
 
 func get_island_noise(coord: Vector2i, island_radius:float) -> float: 
 	var dist_x = coord.x - island_radius
@@ -116,7 +120,7 @@ func spawn_npcs(count:int):
 
 func generate_npc(pos):
 	var npc = npc_scene.instantiate()
-	npc.position = map_coord_to_local(spawn_location_vector)
+	npc.position = map_to_local(spawn_location_vector)
 	#need to specify curr_world - this is current an exported var in the NPC
 	#need to pass curr_world at runtime, use parent node
 	npc.curr_world = self
@@ -124,7 +128,7 @@ func generate_npc(pos):
 	
 func spawn_player():
 	var player = player_scene.instantiate()
-	player.position = map_coord_to_local(spawn_location_vector)
+	player.position = map_to_local(spawn_location_vector)
 	player.curr_world = self
 	self.player = player
 	add_child(player)
@@ -147,9 +151,6 @@ func valid_spawn(x, y)->bool:
 	if tile_data:
 		return tile_data.get_custom_data("walkable")
 	return false
-
-func map_coord_to_local(map_coord: Vector2i):
-	return map_coord * tile_size + Vector2i(tile_size, tile_size) / 2
 
 func day_end():
 	print("day end")

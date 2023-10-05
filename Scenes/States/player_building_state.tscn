@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ummpo0s7ar22"]
+
+[ext_resource type="Script" path="res://Scripts/player_building_state.gd" id="1_bp0f3"]
+
+[node name="PlayerBuildingState" type="Node2D"]
+script = ExtResource("1_bp0f3")
+state = 3

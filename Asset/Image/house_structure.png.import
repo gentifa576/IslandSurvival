@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://ggxvwdg2qlbd"
+path="res://.godot/imported/house_structure.png-15acf607128ea7e5b71f89f33e0fcbae.image"
+
+[deps]
+
+source_file="res://Asset/Image/house_structure.png"
+dest_files=["res://.godot/imported/house_structure.png-15acf607128ea7e5b71f89f33e0fcbae.image"]
+
+[params]
+
