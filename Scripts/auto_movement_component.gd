@@ -34,7 +34,6 @@ func calculate_movement(delta):
 		return
 
 	var next_path = destinations[0]
-#	var next_path_position = target.curr_world.map_to_local(next_path)
 	var next_path_position = next_path
 	target.velocity = target.position.direction_to(next_path_position).normalized() * speed * delta
 #	print(target.position, " ", next_path_position, " ", target.velocity, " ", target.position.distance_to(destinations[0]))

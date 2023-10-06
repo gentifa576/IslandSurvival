@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://b5prxw020l8d3"]
 
 [ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_foj0a"]
-[ext_resource type="PackedScene" uid="uid://bixcgee8vg7da" path="res://Scenes/auto_movement_component.tscn" id="2_ovrdj"]
 [ext_resource type="PackedScene" uid="uid://cvd4ox7np0pw3" path="res://Scenes/relationship_component.tscn" id="3_4kcfv"]
+[ext_resource type="PackedScene" uid="uid://bixcgee8vg7da" path="res://Scenes/auto_movement_component.tscn" id="3_tlusk"]
 [ext_resource type="PackedScene" uid="uid://4uqt0uve0510" path="res://Scenes/States/npc_waiting_state.tscn" id="4_o2g0w"]
 [ext_resource type="PackedScene" uid="uid://cb12vcailxu58" path="res://Scenes/States/npc_walking_state.tscn" id="5_2x36h"]
 [ext_resource type="Script" path="res://Scripts/Label.gd" id="5_3xpj3"]
@@ -16,11 +16,11 @@ collision_mask = 7
 [node name="ColorRect" parent="CharacterSprite" index="0"]
 color = Color(0.780392, 0.764706, 0.470588, 1)
 
-[node name="AutoMovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("target") instance=ExtResource("2_ovrdj")]
-speed = 2000
+[node name="RelationshipComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("target") instance=ExtResource("3_4kcfv")]
 target = NodePath("../..")
 
-[node name="RelationshipComponent" parent="ComponentContainer" index="1" node_paths=PackedStringArray("target") instance=ExtResource("3_4kcfv")]
+[node name="AutoMovementComponent" parent="ComponentContainer" index="1" node_paths=PackedStringArray("target") instance=ExtResource("3_tlusk")]
+speed = 6400
 target = NodePath("../..")
 
 [node name="Label" type="Label" parent="StateManager" index="0"]
