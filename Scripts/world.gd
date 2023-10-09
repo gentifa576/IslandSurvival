@@ -41,7 +41,7 @@ func _ready():
 	day_timer.start()
 	
 	noise.seed = randi() + 1
-	noise.seed = -1779600403
+#	noise.seed = -1779600403
 #	noise.seed = 1340113787
 #	noise.seed = 414202871
 	print(noise.seed)
@@ -181,7 +181,7 @@ func spawn_location() -> Vector2i:
 			var x = center.x + radius * cos(radians)
 			var y = center.y + radius * sin(radians)
 			if valid_spawn(x, y):
-				print(x * tile_size, " ", y * tile_size)
+#				print(x * tile_size, " ", y * tile_size)
 				return Vector2i(x, y)
 	return center
 
@@ -192,13 +192,13 @@ func valid_spawn(x, y)->bool:
 	return false
 
 func day_end():
-	print("day end")
+#	print("day end")
 	night_timer.start()
 	tile_map.day_transition_target = Global.Cycle.NIGHT
 	pass
 
 func night_end():
-	print("night end")
+#	print("night end")
 	day_timer.start()
 	tile_map.day_transition_target = Global.Cycle.DAY
 	pass
