@@ -7,10 +7,10 @@ class_name BuildingComponent
 @export var build_target: PackedScene
 
 var placement: StructurePlacement
-#var can_build: bool
+var can_build: bool
 
 func initialize():
-#	can_build = false
+	can_build = false
 	placement = build_placement.instantiate()
 	placement.visible = false
 	placement.sprite = ImageTexture.create_from_image(temp_asset)
@@ -34,7 +34,7 @@ func _input(event):
 		target.state_manager.transition(BaseState.States.BUILD)
 		pass
 	
-	if direction_raycast.target_position != Vector2.ZERO && event.is_action_pressed("Interact") && placement.is_valid:
+	if can_build && direction_raycast.target_position != Vector2.ZERO && event.is_action_pressed("Interact") && placement.is_valid:
 		var structure = build_target.instantiate()
 		structure.sprite = ImageTexture.create_from_image(temp_asset)
 		var coord = target.curr_world.local_to_map_coord(target.global_position + direction_raycast.target_position * 3)

@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_s4ips"]
 [ext_resource type="PackedScene" uid="uid://jds8bu6kwcmg" path="res://Scenes/movement_component.tscn" id="2_t3ryb"]
 [ext_resource type="PackedScene" uid="uid://qt3fs80beqjh" path="res://Scenes/dialog_component.tscn" id="3_vpicb"]
-[ext_resource type="PackedScene" uid="uid://bttwdk4fk5ii2" path="res://Scenes/building_component.tscn" id="4_85cr3"]
 [ext_resource type="PackedScene" uid="uid://dspgmekg055h2" path="res://Scenes/States/player_dialog_state.tscn" id="4_har5j"]
+[ext_resource type="PackedScene" uid="uid://bttwdk4fk5ii2" path="res://Scenes/building_component.tscn" id="4_ycnvt"]
 [ext_resource type="PackedScene" uid="uid://midd2jtm5y3i" path="res://Scenes/States/player_walking_state.tscn" id="5_txu31"]
 [ext_resource type="PackedScene" uid="uid://ummpo0s7ar22" path="res://Scenes/States/player_building_state.tscn" id="6_kqu05"]
 
@@ -26,7 +26,7 @@ target = NodePath("../..")
 dialog_raycast = NodePath("../../InteractDetection")
 target = NodePath("../..")
 
-[node name="BuildingComponent" parent="ComponentContainer" index="2" node_paths=PackedStringArray("direction_raycast", "target") instance=ExtResource("4_85cr3")]
+[node name="BuildingComponent" parent="ComponentContainer" index="2" node_paths=PackedStringArray("direction_raycast", "target") instance=ExtResource("4_ycnvt")]
 direction_raycast = NodePath("../../InteractDetection")
 target = NodePath("../..")
 
@@ -43,8 +43,9 @@ dialog_component = NodePath("../../ComponentContainer/DialogComponent")
 movement_component = NodePath("../../ComponentContainer/MovementComponent")
 dialog_component = NodePath("../../ComponentContainer/DialogComponent")
 
-[node name="PlayerBuildingState" parent="StateManager" index="2" node_paths=PackedStringArray("movement_component") instance=ExtResource("6_kqu05")]
+[node name="PlayerBuildingState" parent="StateManager" index="2" node_paths=PackedStringArray("movement_component", "building_component") instance=ExtResource("6_kqu05")]
 movement_component = NodePath("../../ComponentContainer/MovementComponent")
+building_component = NodePath("../../ComponentContainer/BuildingComponent")
 
 [connection signal="close_dialog" from="ComponentContainer/DialogComponent" to="StateManager/PlayerDialogState" method="_on_dialog_component_close_dialog"]
 [connection signal="start_dialog" from="ComponentContainer/DialogComponent" to="StateManager/PlayerDialogState" method="_on_dialog_component_start_dialog"]

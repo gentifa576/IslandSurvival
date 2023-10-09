@@ -7,9 +7,12 @@ class_name World
 @onready var structure_container: StructureContainer = $StructureContainer
 @onready var npc_scene = preload("res://Scenes/npc.tscn")
 @onready var player_scene = preload("res://Scenes/player.tscn")
+@onready var structure_scene = preload("res://Scenes/structure.tscn")
+@onready var cave_image = preload("res://Asset/Image/cave.png")
+@onready var forest_image = preload("res://Asset/Image/forest.png")
 
-@export var island_size:float = 64
-@export var parent_node: Node2D
+@export var island_size: float = 64
+@export var resource_node: int = 1
 
 var noise = FastNoiseLite.new()
 var chunk_size = 64
@@ -18,7 +21,11 @@ var generated_chunks = {}
 var player
 var WORLD_SIZE = island_size * 2
 
+var cave_texture
+var forest_texture
+
 var spawn_location_vector: Vector2
+var walkable_tile = []
 
 #naive 2 tile solution for atlas
 var ground_tile = Vector2i(0,0)
@@ -26,11 +33,14 @@ var water_tile = Vector2i(1,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	cave_texture = ImageTexture.create_from_image(cave_image)
+	forest_texture = ImageTexture.create_from_image(forest_image)
+	
 	day_timer.timeout.connect(day_end)
 	night_timer.timeout.connect(night_end)
 	day_timer.start()
 	
-#	noise.seed = randi() + 1
+	noise.seed = randi() + 1
 	noise.seed = -1779600403
 #	noise.seed = 1340113787
 #	noise.seed = 414202871
@@ -39,7 +49,9 @@ func _ready():
 	noise.frequency = 0.01
 	generate_chunk(Vector2i(0,0))
 	update_surrounding_chunks(Vector2i(0,0))
+	generate_resources()
 	spawn_location_vector = spawn_location()
+	
 	call_deferred("spawn_npcs", 3)
 	call_deferred("spawn_player")
 	pass # Replace with function body.
@@ -109,9 +121,26 @@ func generate_chunk(chunk_pos:Vector2i):
 			var noise_value = get_island_noise(coord, island_size)
 			if noise_value > 0:
 				tile_map.set_cell(0,coord,2,ground_tile)
+				walkable_tile.append(coord)
 			else:
 				tile_map.set_cell(0,coord,2,water_tile)
 		pass
+		
+func generate_resources():
+	var rng = RandomNumberGenerator.new()
+	rng.seed = noise.seed
+	var cave_texture = ImageTexture.create_from_image(cave_image)
+	var forest_texture = ImageTexture.create_from_image(forest_image)
+	for i in range(0, resource_node):
+		var cave_structure = structure_scene.instantiate()
+		cave_structure.sprite = cave_texture
+		structure_container.add_structure(walkable_tile[rng.randi() % walkable_tile.size()], cave_structure)
+		
+		var forest_structure = structure_scene.instantiate()
+		forest_structure.sprite = forest_texture
+		structure_container.add_structure(walkable_tile[rng.randi() % walkable_tile.size()], forest_structure)
+		pass
+	pass
 
 func get_island_noise(coord: Vector2i, island_radius:float) -> float: 
 	var dist_x = coord.x - island_radius

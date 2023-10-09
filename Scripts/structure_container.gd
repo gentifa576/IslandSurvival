@@ -2,6 +2,12 @@ extends Node2D
 class_name StructureContainer
 
 @export var curr_world: World
+var cave_resource: int
+var forest_resource: int
+
+func _ready():
+	cave_resource = 0
+	forest_resource = 0
 
 func add_structure(location_coord: Vector2i, object: Structure):
 	object.position = curr_world.map_to_local(location_coord)
