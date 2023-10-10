@@ -168,7 +168,7 @@ func generate_npc(pos):
 func spawn_player():
 	var player = player_scene.instantiate()
 	player.position = map_to_local(spawn_location_vector)
-	player.curr_world = self
+	player.curr_world [[[[]]]]= self
 	self.player = player
 	add_child(player)
 	
