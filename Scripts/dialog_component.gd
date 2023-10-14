@@ -8,12 +8,17 @@ signal start_dialog(target: Character)
 var dialog_with: Character
 var dialog_with_component: RelationshipComponent
 
+
+@onready var canvas_layer = $CanvasLayer
+@onready var container = $CanvasLayer/Container
+@onready var close_button = $CanvasLayer/Container/CloseButton
+@onready var gift_button = $CanvasLayer/Container/InteractionContainer/GiftButton
+@onready var talk_button = $CanvasLayer/Container/InteractionContainer/TalkButton
+
 func initialize():
-	if !get_tree().get_root().size_changed.is_connected(resize):
-		get_tree().get_root().size_changed.connect(resize)
-	resize()
+	#no resize required
 	dialog_with = null
-	self.visible = false
+	canvas_layer.visible = false
 	set_process_input(true)
 	pass
 
@@ -26,9 +31,9 @@ func component_physics_process(delta):
 func _on_close_button_pressed():
 	close_dialog.emit()
 	initialize()
-	$Container/CloseButton.pressed.disconnect(_on_close_button_pressed)
-	$Container/InteractionContainer/TalkButton.pressed.disconnect(_on_talk_button_pressed)
-	$Container/InteractionContainer/GiftButton.pressed.disconnect(_on_gift_button_pressed)
+	close_button.pressed.disconnect(_on_close_button_pressed)
+	talk_button.pressed.disconnect(_on_talk_button_pressed)
+	gift_button.pressed.disconnect(_on_gift_button_pressed)
 	
 func _on_talk_button_pressed():
 	dialog_with_component.increase_relationship(1)
@@ -43,13 +48,13 @@ func _input(event):
 		if dialog_raycast.get_collider().components.has(BaseComponent.Components.RELATIONSHIP):
 			dialog_with = dialog_raycast.get_collider()
 			dialog_with_component = dialog_with.components[BaseComponent.Components.RELATIONSHIP]
-			self.visible = true
+			canvas_layer.visible = true
 			start_dialog.emit(dialog_with)
 			set_process_input(false)
-			$Container/CloseButton.pressed.connect(_on_close_button_pressed)
-			$Container/InteractionContainer/TalkButton.pressed.connect(_on_talk_button_pressed)
-			$Container/InteractionContainer/GiftButton.pressed.connect(_on_gift_button_pressed)
+			close_button.pressed.connect(_on_close_button_pressed)
+			talk_button.pressed.connect(_on_talk_button_pressed)
+			gift_button.pressed.connect(_on_gift_button_pressed)
 
-func resize():
-	$Container.size = get_viewport().get_visible_rect().size / 2
-	$Container.position = $Container.size / 2 * -$Container.scale
+
+func _input_dialog_close():
+	_on_close_button_pressed()

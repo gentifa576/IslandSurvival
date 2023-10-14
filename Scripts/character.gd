@@ -27,3 +27,7 @@ func _physics_process(delta):
 		component.component_physics_process(delta)
 	state_manager.physics_process(delta)
 	pass
+
+
+func _on_dialog_component_close_dialog():
+	pass # Replace with function body.

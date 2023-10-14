@@ -5,8 +5,8 @@ class_name World
 @onready var day_timer: Timer = $DayTimer
 @onready var night_timer: Timer = $NightTimer
 @onready var structure_container: StructureContainer = $StructureContainer
-@onready var npc_scene = preload("res://Scenes/npc.tscn")
-@onready var player_scene = preload("res://Scenes/player.tscn")
+@onready var npc_scene = preload("res://Scenes/npc3.tscn")
+@onready var player_scene = preload("res://Scenes/player3.tscn")
 @onready var structure_scene = preload("res://Scenes/structure.tscn")
 @onready var cave_image = preload("res://Asset/Image/cave.png")
 @onready var forest_image = preload("res://Asset/Image/forest.png")
@@ -168,7 +168,7 @@ func generate_npc(pos):
 func spawn_player():
 	var player = player_scene.instantiate()
 	player.position = map_to_local(spawn_location_vector)
-	player.curr_world [[[[]]]]= self
+	player.curr_world = self
 	self.player = player
 	add_child(player)
 	

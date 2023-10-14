@@ -3,38 +3,37 @@
 [ext_resource type="Script" path="res://Scripts/dialog_component.gd" id="1_foamn"]
 
 [node name="DialogComponent" type="Node2D"]
-visible = false
 script = ExtResource("1_foamn")
 component_type = 2
 
-[node name="Container" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1150.0
-offset_bottom = 650.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Container" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.75
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
 
-[node name="InteractionContainer" type="VBoxContainer" parent="Container"]
+[node name="InteractionContainer" type="VBoxContainer" parent="CanvasLayer/Container"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 100
 alignment = 1
 
-[node name="TalkButton" type="Button" parent="Container/InteractionContainer"]
+[node name="TalkButton" type="Button" parent="CanvasLayer/Container/InteractionContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 text = "Click here to talk"
 
-[node name="GiftButton" type="Button" parent="Container/InteractionContainer"]
+[node name="GiftButton" type="Button" parent="CanvasLayer/Container/InteractionContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Click here to gift"
 
-[node name="CloseButton" type="Button" parent="Container"]
+[node name="CloseButton" type="Button" parent="CanvasLayer/Container"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0

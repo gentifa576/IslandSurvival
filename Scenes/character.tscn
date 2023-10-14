@@ -34,3 +34,4 @@ shape = SubResource("RectangleShape2D_eat3p")
 [node name="ComponentContainer" type="Node2D" parent="."]
 
 [node name="StateManager" parent="." instance=ExtResource("2_bdrbm")]
+unique_name_in_owner = true
