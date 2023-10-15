@@ -7,6 +7,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
+	var current_text = text
 	text = BaseState.States.keys()[get_parent().current_state] + "\n" + str($"../../ComponentContainer/RelationshipComponent".relationship_tracker)
-	pass
+	if(current_text != text):
+		print(text)

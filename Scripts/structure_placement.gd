@@ -14,7 +14,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if is_valid:
 		$ColorRect.modulate = Color(0.14, 0.57, 1.00, 0.5)
 	else:

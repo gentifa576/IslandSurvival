@@ -10,7 +10,7 @@ var paused = false
 func _ready():
 	pass # Replace with function body.
 
-func component_process(delta):
+func component_process(_delta):
 	if paused:
 		return
 	pass

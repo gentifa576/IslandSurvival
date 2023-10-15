@@ -17,14 +17,14 @@ func initialize():
 	add_child(placement)
 	pass
 
-func component_process(delta):
+func component_process(_delta):
 	var map_coord = target.curr_world.local_to_map_coord(target.global_position + direction_raycast.target_position * 3)
 	var snap_coord = target.curr_world.map_to_local(map_coord)
 	placement.global_position = snap_coord
 	placement.is_valid = check_valid(map_coord)
 	pass
 	
-func component_physics_process(delta):
+func component_physics_process(_delta):
 	pass
 
 func _input(event):
@@ -45,7 +45,7 @@ func _input(event):
 		pass
 
 func check_valid(map_coord: Vector2i) -> bool:
-	var vectors = []
+	var _vectors = []
 	for i in range(-1, 2):
 		for j in range(-1, 2):
 			var check_coord = map_coord + Vector2i(i, j)

@@ -22,4 +22,3 @@ func transition_progress(delta):
 			operator = 1
 	day_transition_progress -= 0.5 * delta * operator
 	return lerp(Color.DARK_MAGENTA, Color.WHITE, day_transition_progress)
-	pass

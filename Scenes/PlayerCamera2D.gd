@@ -4,7 +4,7 @@ extends Camera2D
 @export var dialog_zoom = Vector2(1.2,1.2)
 
 
-func _on_dialog_component_start_dialog(target):
+func _on_dialog_component_start_dialog(_target):
 	camera_zoom(dialog_zoom)
 
 

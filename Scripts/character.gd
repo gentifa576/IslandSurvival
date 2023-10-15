@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Character
 
-@export var curr_world:World
+@export var curr_world:World = get_parent()
 @onready var state_manager = $StateManager
 var components = {}
 

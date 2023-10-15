@@ -9,8 +9,8 @@ enum Components {MOVE, ANIMATE, DIALOG, RELATIONSHIP, BUILDING}
 func initialize():
 	pass
 
-func component_process(delta):
+func component_process(_delta):
 	pass
 	
-func component_physics_process(delta):
+func component_physics_process(_delta):
 	pass

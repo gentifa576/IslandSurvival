@@ -5,8 +5,8 @@ class_name World
 @onready var day_timer: Timer = $DayTimer
 @onready var night_timer: Timer = $NightTimer
 @onready var structure_container: StructureContainer = $StructureContainer
-@onready var npc_scene = preload("res://Scenes/npc3.tscn")
-@onready var player_scene = preload("res://Scenes/player3.tscn")
+@onready var npc_scene = preload("res://Scenes/npc2.tscn")
+@onready var player_scene = preload("res://Scenes/player2.tscn")
 @onready var structure_scene = preload("res://Scenes/structure.tscn")
 @onready var cave_image = preload("res://Asset/Image/cave.png")
 @onready var forest_image = preload("res://Asset/Image/forest.png")
@@ -57,7 +57,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if player && player.components[BaseComponent.Components.MOVE].is_moving:
 		update_chunks_around_player()
 	pass
@@ -114,7 +114,7 @@ func update_surrounding_chunks(current_chunk):
 	update_pathfinding()
 
 func generate_chunk(chunk_pos:Vector2i):
-	var offset = chunk_pos * chunk_size * tile_size
+	var _offset = chunk_pos * chunk_size * tile_size
 	for x in range(chunk_size):
 		for y in range(chunk_size):
 			var coord = Vector2i(x + chunk_pos.x * chunk_size, y + chunk_pos.y * chunk_size)
@@ -129,15 +129,15 @@ func generate_chunk(chunk_pos:Vector2i):
 func generate_resources():
 	var rng = RandomNumberGenerator.new()
 	rng.seed = noise.seed
-	var cave_texture = ImageTexture.create_from_image(cave_image)
-	var forest_texture = ImageTexture.create_from_image(forest_image)
+	var cave_texture_stack = ImageTexture.create_from_image(cave_image)
+	var forest_texture_stack = ImageTexture.create_from_image(forest_image)
 	for i in range(0, resource_node):
 		var cave_structure = structure_scene.instantiate()
-		cave_structure.sprite = cave_texture
+		cave_structure.sprite = cave_texture_stack
 		structure_container.add_structure(walkable_tile[rng.randi() % walkable_tile.size()], cave_structure)
 		
 		var forest_structure = structure_scene.instantiate()
-		forest_structure.sprite = forest_texture
+		forest_structure.sprite = forest_texture_stack
 		structure_container.add_structure(walkable_tile[rng.randi() % walkable_tile.size()], forest_structure)
 		pass
 	pass
@@ -154,23 +154,23 @@ func get_island_noise(coord: Vector2i, island_radius:float) -> float:
 
 func spawn_npcs(count:int):
 	for i in range(count):
-		var spawn_location = spawn_location_vector * tile_size
-		generate_npc(spawn_location)
+		var gen_spawn_location = spawn_location_vector * tile_size
+		generate_npc(gen_spawn_location)
 
-func generate_npc(pos):
+func generate_npc(_pos):
 	var npc = npc_scene.instantiate()
-	npc.position = map_to_local(spawn_location_vector)
-	#need to specify curr_world - this is current an exported var in the NPC
-	#need to pass curr_world at runtime, use parent node
+	#UPDATE: Currently stacking player + NPCs on spawn for debug, 
+	# swap to using position generated
+	npc.position = map_to_local(spawn_location_vector) 
 	npc.curr_world = self
 	add_child(npc)
 	
 func spawn_player():
-	var player = player_scene.instantiate()
-	player.position = map_to_local(spawn_location_vector)
-	player.curr_world = self
-	self.player = player
-	add_child(player)
+	var new_player = player_scene.instantiate()
+	new_player.position = map_to_local(spawn_location_vector)
+	new_player.curr_world = self
+	self.player = new_player
+	add_child(new_player)
 	
 func spawn_location() -> Vector2i:
 	var center = Vector2(island_size, island_size)

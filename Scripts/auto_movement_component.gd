@@ -12,7 +12,7 @@ func initialize():
 	destinations = []
 	pass
 
-func component_process(delta):
+func component_process(_delta):
 	if pause:
 		return
 	
