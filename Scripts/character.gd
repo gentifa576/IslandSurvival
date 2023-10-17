@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Character
 
 @export var curr_world:World = get_parent()
-@onready var state_manager = $StateManager
+@onready var state_manager:StateManager = $StateManager
 var components = {}
 
 func _ready():
@@ -26,7 +26,7 @@ func _physics_process(delta):
 	for component in components.values():
 		component.component_physics_process(delta)
 	state_manager.physics_process(delta)
-	pass
+	
 
 
 func _on_dialog_component_close_dialog():

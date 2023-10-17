@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5prxw020l8d3"]
+[gd_scene load_steps=9 format=3 uid="uid://b5prxw020l8d3"]
 
 [ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_foj0a"]
 [ext_resource type="PackedScene" uid="uid://cvd4ox7np0pw3" path="res://Scenes/relationship_component.tscn" id="3_4kcfv"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cb12vcailxu58" path="res://Scenes/States/npc_walking_state.tscn" id="5_2x36h"]
 [ext_resource type="Script" path="res://Scripts/Label.gd" id="5_3xpj3"]
 [ext_resource type="PackedScene" uid="uid://ds7n6wxr5f1wr" path="res://Scenes/States/npc_dialog_state.tscn" id="6_jrb5q"]
+[ext_resource type="PackedScene" uid="uid://c73t0x7y5hwvs" path="res://Scenes/States/npc_task_state.tscn" id="8_12sv3"]
 
 [node name="NPC" instance=ExtResource("1_foj0a")]
 z_index = 10
@@ -39,3 +40,6 @@ movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 movement_range = 5.0
 
 [node name="NPCDialogState" parent="StateManager" index="3" instance=ExtResource("6_jrb5q")]
+
+[node name="NPCTaskState" parent="StateManager" index="4" instance=ExtResource("8_12sv3")]
+state = 4

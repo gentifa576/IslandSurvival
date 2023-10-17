@@ -1,4 +1,5 @@
 extends Node2D
+class_name StateManager
 
 @export var current_state: BaseState.States
 var state_dictionary = {}

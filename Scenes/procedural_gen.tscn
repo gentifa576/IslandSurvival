@@ -8,6 +8,7 @@
 [node name="procgen" type="Node2D"]
 
 [node name="World" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_fbju1")
 
 [node name="TileMap" type="TileMap" parent="World"]

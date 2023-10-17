@@ -5,9 +5,9 @@ class_name World
 @onready var day_timer: Timer = $DayTimer
 @onready var night_timer: Timer = $NightTimer
 @onready var structure_container: StructureContainer = $StructureContainer
-@onready var npc_scene = preload("res://Scenes/npc2.tscn")
-@onready var player_scene = preload("res://Scenes/player2.tscn")
-@onready var structure_scene = preload("res://Scenes/structure.tscn")
+@onready var npc_scene:PackedScene = preload("res://Scenes/npc.tscn")
+@onready var player_scene:PackedScene = preload("res://Scenes/player.tscn")
+@onready var structure_scene:PackedScene = preload("res://Scenes/structure.tscn")
 @onready var cave_image = preload("res://Asset/Image/cave.png")
 @onready var forest_image = preload("res://Asset/Image/forest.png")
 
@@ -23,6 +23,8 @@ var WORLD_SIZE = island_size * 2
 
 var cave_texture
 var forest_texture
+var cave_locations = []
+var forest_locations = []
 
 var spawn_location_vector: Vector2
 var walkable_tile = []
@@ -133,12 +135,16 @@ func generate_resources():
 	var forest_texture_stack = ImageTexture.create_from_image(forest_image)
 	for i in range(0, resource_node):
 		var cave_structure = structure_scene.instantiate()
+		cave_structure.add_to_group("cave")
 		cave_structure.sprite = cave_texture_stack
-		structure_container.add_structure(walkable_tile[rng.randi() % walkable_tile.size()], cave_structure)
+		var cave_spawn_loc = walkable_tile[rng.randi() % walkable_tile.size()]
+		structure_container.add_structure(cave_spawn_loc, cave_structure)
 		
 		var forest_structure = structure_scene.instantiate()
+		forest_structure.add_to_group("forest")
 		forest_structure.sprite = forest_texture_stack
-		structure_container.add_structure(walkable_tile[rng.randi() % walkable_tile.size()], forest_structure)
+		var forest_spawn_loc = walkable_tile[rng.randi() % walkable_tile.size()]
+		structure_container.add_structure(forest_spawn_loc, forest_structure)
 		pass
 	pass
 

@@ -15,6 +15,11 @@ var dialog_with_component: RelationshipComponent
 @onready var gift_button = $CanvasLayer/Container/InteractionContainer/GiftButton
 @onready var talk_button = $CanvasLayer/Container/InteractionContainer/TalkButton
 
+#testing task sending
+@onready var trees_button = $CanvasLayer/Container/InteractionContainer/TreesButton
+@onready var cave_button = $CanvasLayer/Container/InteractionContainer/CaveButton
+
+
 func initialize():
 	#no resize required
 	dialog_with = null
@@ -34,7 +39,10 @@ func _on_close_button_pressed():
 	close_button.pressed.disconnect(_on_close_button_pressed)
 	talk_button.pressed.disconnect(_on_talk_button_pressed)
 	gift_button.pressed.disconnect(_on_gift_button_pressed)
-	
+	trees_button.pressed.disconnect(_send_to_location)
+	cave_button.pressed.disconnect(_send_to_location)
+
+
 func _on_talk_button_pressed():
 	dialog_with_component.increase_relationship(1)
 	pass # Replace with function body.
@@ -54,7 +62,12 @@ func _input(event):
 			close_button.pressed.connect(_on_close_button_pressed)
 			talk_button.pressed.connect(_on_talk_button_pressed)
 			gift_button.pressed.connect(_on_gift_button_pressed)
+			trees_button.pressed.connect(_send_to_location.bind("forest"))
+			cave_button.pressed.connect(_send_to_location.bind("cave"))
 
 
 func _input_dialog_close():
 	_on_close_button_pressed()
+	
+func _send_to_location(location):
+	dialog_with.state_manager.transition()

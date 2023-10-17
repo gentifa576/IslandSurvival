@@ -17,21 +17,34 @@ anchor_bottom = 0.75
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InteractionContainer" type="VBoxContainer" parent="CanvasLayer/Container"]
+[node name="InteractionContainer" type="GridContainer" parent="CanvasLayer/Container"]
 layout_mode = 2
-theme_override_constants/separation = 100
-alignment = 1
+size_flags_vertical = 4
+theme_override_constants/v_separation = 20
 
 [node name="TalkButton" type="Button" parent="CanvasLayer/Container/InteractionContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Click here to talk"
+text = "TALK"
 
 [node name="GiftButton" type="Button" parent="CanvasLayer/Container/InteractionContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Click here to gift"
+text = "GIFT"
+
+[node name="TreesButton" type="Button" parent="CanvasLayer/Container/InteractionContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "TREE"
+
+[node name="CaveButton" type="Button" parent="CanvasLayer/Container/InteractionContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "CAVE"
 
 [node name="CloseButton" type="Button" parent="CanvasLayer/Container"]
 layout_mode = 2

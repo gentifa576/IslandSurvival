@@ -5,6 +5,7 @@ signal target_reached
 
 @export var speed = 320
 var destinations: PackedVector2Array
+var task_location 
 var is_moving = false
 var pause = false
 
@@ -41,3 +42,4 @@ func calculate_movement(delta):
 
 	if target.position.distance_to(next_path_position) < 1:
 		destinations.remove_at(0)
+
