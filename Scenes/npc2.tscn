@@ -17,6 +17,9 @@ collision_mask = 7
 [node name="ColorRect" parent="CharacterSprite" index="0"]
 color = Color(0.780392, 0.764706, 0.470588, 1)
 
+[node name="ComponentContainer" parent="." index="2"]
+unique_name_in_owner = true
+
 [node name="RelationshipComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("target") instance=ExtResource("3_4kcfv")]
 target = NodePath("../..")
 

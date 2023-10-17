@@ -2,7 +2,7 @@ extends BaseState
 
 @export var dialog_component: DialogComponent
 signal close_dialog_press()
-var with
+var with:Character
 
 func enter():
 	pass
@@ -27,6 +27,7 @@ func _input(event):
 		close_dialog_press.emit()
 
 func _on_dialog_component_close_dialog():
-	with.state_manager.transition(BaseState.States.WAIT)
+	if with.state_manager.current_state != BaseState.States.TASK:
+		with.state_manager.transition(BaseState.States.WAIT)
 	transition.emit(BaseState.States.WALK)
 	pass # Replace with function body.

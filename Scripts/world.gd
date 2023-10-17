@@ -5,8 +5,8 @@ class_name World
 @onready var day_timer: Timer = $DayTimer
 @onready var night_timer: Timer = $NightTimer
 @onready var structure_container: StructureContainer = $StructureContainer
-@onready var npc_scene:PackedScene = preload("res://Scenes/npc.tscn")
-@onready var player_scene:PackedScene = preload("res://Scenes/player.tscn")
+@onready var npc_scene:PackedScene = preload("res://Scenes/npc2.tscn")
+@onready var player_scene:PackedScene = preload("res://Scenes/player2.tscn")
 @onready var structure_scene:PackedScene = preload("res://Scenes/structure.tscn")
 @onready var cave_image = preload("res://Asset/Image/cave.png")
 @onready var forest_image = preload("res://Asset/Image/forest.png")

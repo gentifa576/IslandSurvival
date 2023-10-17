@@ -51,7 +51,9 @@ func find_random_target(curr_world):
 #		movement_component.destination = destination
 
 func reached():
-	transition.emit(States.WAIT)
+	#NAIVE IMPLEMENTATION FOR DESTINATIONS - PREVENT STATE CHANGE BACK TO WAIT WHILE IN TASK
+	if movement_component.task_destinations.is_empty():
+		transition.emit(States.WAIT)
 	pass
 
 func randomized_destination():

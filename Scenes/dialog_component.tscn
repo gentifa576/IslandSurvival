@@ -46,6 +46,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "CAVE"
 
+[node name="StopButton" type="Button" parent="CanvasLayer/Container/InteractionContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "STOP"
+
 [node name="CloseButton" type="Button" parent="CanvasLayer/Container"]
 layout_mode = 2
 size_flags_horizontal = 8
