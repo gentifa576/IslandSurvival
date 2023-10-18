@@ -5,8 +5,8 @@ class_name World
 @onready var day_timer: Timer = $DayTimer
 @onready var night_timer: Timer = $NightTimer
 @onready var structure_container: StructureContainer = $StructureContainer
-@onready var npc_scene:PackedScene = preload("res://Scenes/npc2.tscn")
-@onready var player_scene:PackedScene = preload("res://Scenes/player2.tscn")
+@onready var npc_scene:PackedScene = preload("res://Scenes/npc.tscn")
+@onready var player_scene:PackedScene = preload("res://Scenes/player.tscn")
 @onready var structure_scene:PackedScene = preload("res://Scenes/structure.tscn")
 @onready var cave_image = preload("res://Asset/Image/cave.png")
 @onready var forest_image = preload("res://Asset/Image/forest.png")
@@ -121,7 +121,7 @@ func generate_chunk(chunk_pos:Vector2i):
 		for y in range(chunk_size):
 			var coord = Vector2i(x + chunk_pos.x * chunk_size, y + chunk_pos.y * chunk_size)
 			var noise_value = get_island_noise(coord, island_size)
-			if noise_value > 0:
+			if noise_value > -0.2:
 				tile_map.set_cell(0,coord,2,ground_tile)
 				walkable_tile.append(coord)
 			else:

@@ -1,10 +1,12 @@
 extends BaseState
 
+@export var movement_component:AutoMovementComponent
+
 func enter():
-	pass
+	movement_component.pause = true
 	
 func exit():
-	pass
+	movement_component.pause = false
 
 func process(_delta):
 	pass

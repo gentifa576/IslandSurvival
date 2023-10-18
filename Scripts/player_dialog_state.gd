@@ -27,7 +27,11 @@ func _input(event):
 		close_dialog_press.emit()
 
 func _on_dialog_component_close_dialog():
-	if with.state_manager.current_state != BaseState.States.TASK:
+	var has_tasks = with.components[BaseComponent.Components.MOVE].task_destinations.is_empty()
+	if has_tasks:
+		with.state_manager.transition(BaseState.States.TASK)
+	else:
 		with.state_manager.transition(BaseState.States.WAIT)
+		with.state_manager.transition(BaseState.States.WALK)
 	transition.emit(BaseState.States.WALK)
 	pass # Replace with function body.

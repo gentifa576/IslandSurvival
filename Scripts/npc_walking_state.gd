@@ -11,7 +11,10 @@ var destination
 func enter():
 	movement_component.target_reached.connect(reached)
 	
-	destination = randomized_destination()
+	if movement_component.task_destinations.is_empty():
+		destination = randomized_destination()
+	else:
+		destination = self.global_position
 	var target = movement_component.target
 	var curr_world = target.curr_world
 	find_random_target(curr_world)

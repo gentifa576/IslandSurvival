@@ -75,12 +75,9 @@ func _input_dialog_close():
 func _send_to_location(location):
 	if !location:
 		return
-#	NAIVE IMPLEMENTATION - SHOULD NOT FORCE STATE TRANSITION FROM HERE	
 	dialog_with.state_manager.transition(BaseState.States.TASK)
-#	NAIVE IMPLEMENTATION - SHOULD NOT UPDATE DESTINATIONS ON NPC FROM HERE
 	var npc_movement:AutoMovementComponent = dialog_with.components[BaseComponent.Components.MOVE]
 	
-	#DEBUG - NAIVE IMPLEMENTATION
 	#determine closest object to NPC with matching location group
 	#pass these as a task_destination array to AutoMovmentComponent
 	#AutoMovementComponent will loop through these 2 destinations while not in task state
@@ -88,24 +85,23 @@ func _send_to_location(location):
 	for structure in dialog_with.curr_world.structure_container.get_children():
 		if structure.is_in_group(location):
 			if !destination:
-				destination = structure
+				destination = structure 
 				continue
 			var dist_to_structure = dialog_with.global_position.distance_to(structure.global_position)
 			var dist_to_destination = dialog_with.global_position.distance_to(destination.global_position)
 			if dist_to_structure < dist_to_destination:
 				destination = structure
-#	destination = dialog_with.curr_world.local_to_map_coord(destination.position)
 	var current_position = dialog_with.global_position
 	npc_movement.task_destinations = [destination.global_position,current_position]
-	
+	npc_movement.is_moving = true
+	npc_movement.pause = false
 	_on_close_button_pressed()
 	
 func _stop_task():
-#	NAIVE IMPLEMENTATION - SHOULD NOT FORCE STATE TRANSITION FROM HERE
 	dialog_with.state_manager.transition(BaseState.States.WAIT)
-#	NAIVE IMPLEMENTATION - SHOULD NOT UPDATE DESTINATIONS ON NPC FROM HERE
 	var npc_movement:AutoMovementComponent = dialog_with.components[BaseComponent.Components.MOVE]
 	npc_movement.task_destinations.clear()
-	
+	npc_movement.is_moving = false
+	npc_movement.pause = true
 	_on_close_button_pressed()
 	
