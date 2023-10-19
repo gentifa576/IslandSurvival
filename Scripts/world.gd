@@ -54,7 +54,7 @@ func _ready():
 	generate_resources()
 	spawn_location_vector = spawn_location()
 	
-	call_deferred("spawn_npcs", 3)
+	call_deferred("spawn_npcs", 1)
 	call_deferred("spawn_player")
 	pass # Replace with function body.
 
@@ -121,7 +121,7 @@ func generate_chunk(chunk_pos:Vector2i):
 		for y in range(chunk_size):
 			var coord = Vector2i(x + chunk_pos.x * chunk_size, y + chunk_pos.y * chunk_size)
 			var noise_value = get_island_noise(coord, island_size)
-			if noise_value > -0.2:
+			if noise_value > 0:
 				tile_map.set_cell(0,coord,2,ground_tile)
 				walkable_tile.append(coord)
 			else:

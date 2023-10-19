@@ -95,13 +95,14 @@ func _send_to_location(location):
 	npc_movement.task_destinations = [destination.global_position,current_position]
 	npc_movement.is_moving = true
 	npc_movement.pause = false
-	_on_close_button_pressed()
+	call_deferred("_on_close_button_pressed")
 	
 func _stop_task():
-	dialog_with.state_manager.transition(BaseState.States.WAIT)
+
 	var npc_movement:AutoMovementComponent = dialog_with.components[BaseComponent.Components.MOVE]
 	npc_movement.task_destinations.clear()
 	npc_movement.is_moving = false
 	npc_movement.pause = true
-	_on_close_button_pressed()
+	dialog_with.state_manager.transition(BaseState.States.WAIT)
+	call_deferred("_on_close_button_pressed")
 	
