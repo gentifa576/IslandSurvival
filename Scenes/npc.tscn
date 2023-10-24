@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5prxw020l8d3"]
+[gd_scene load_steps=9 format=3 uid="uid://jp1n3b7gsbwu"]
 
 [ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_foj0a"]
 [ext_resource type="PackedScene" uid="uid://cvd4ox7np0pw3" path="res://Scenes/relationship_component.tscn" id="3_4kcfv"]
@@ -16,6 +16,9 @@ collision_mask = 7
 
 [node name="ColorRect" parent="CharacterSprite" index="0"]
 color = Color(0.780392, 0.764706, 0.470588, 1)
+
+[node name="ComponentContainer" parent="." index="2"]
+unique_name_in_owner = true
 
 [node name="RelationshipComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("target") instance=ExtResource("3_4kcfv")]
 target = NodePath("../..")
@@ -39,7 +42,9 @@ script = ExtResource("5_3xpj3")
 movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 movement_range = 5.0
 
-[node name="NPCDialogState" parent="StateManager" index="3" instance=ExtResource("6_jrb5q")]
+[node name="NPCDialogState" parent="StateManager" index="3" node_paths=PackedStringArray("movement_component") instance=ExtResource("6_jrb5q")]
+movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 
-[node name="NPCTaskState" parent="StateManager" index="4" instance=ExtResource("8_12sv3")]
+[node name="NPCTaskState" parent="StateManager" index="4" node_paths=PackedStringArray("movement_component") instance=ExtResource("8_12sv3")]
+movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 state = 4

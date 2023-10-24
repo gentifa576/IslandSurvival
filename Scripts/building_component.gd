@@ -37,6 +37,8 @@ func _input(event):
 	if can_build && direction_raycast.target_position != Vector2.ZERO && event.is_action_pressed("Interact") && placement.is_valid:
 		var structure = build_target.instantiate()
 		structure.sprite = ImageTexture.create_from_image(temp_asset)
+		#TEMPORARILY ASSIGNING NODE GROUP resource_depot HERE - ATTACH TO SCENE LATER
+		structure.add_to_group("resource_depot")
 		var coord = target.curr_world.local_to_map_coord(target.global_position + direction_raycast.target_position * 3)
 		target.curr_world.structure_container.add_structure(coord, structure)
 		target.state_manager.transition(BaseState.States.WALK)

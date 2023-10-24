@@ -35,4 +35,5 @@ func transition(new_state):
 		state_dictionary[current_state].exit()
 		state_dictionary[new_state].enter()
 		current_state = new_state
+		if get_parent().name == "NPC": print(BaseState.States.find_key(new_state))
 	pass

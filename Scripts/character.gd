@@ -2,11 +2,11 @@ extends CharacterBody2D
 class_name Character
 
 @export var curr_world:World = get_parent()
-@onready var state_manager:StateManager = $StateManager
+@onready var state_manager:StateManager = %StateManager
 var components = {}
 
 func _ready():
-	for component in $ComponentContainer.get_children():
+	for component in self.get_node("%ComponentContainer").get_children():
 		if component is BaseComponent:
 			component.target = self
 			component.initialize()

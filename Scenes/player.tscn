@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bla638kwwba13"]
+[gd_scene load_steps=9 format=3 uid="uid://de4lscyf6orq6"]
 
 [ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_s4ips"]
 [ext_resource type="PackedScene" uid="uid://jds8bu6kwcmg" path="res://Scenes/movement_component.tscn" id="2_t3ryb"]
@@ -17,6 +17,9 @@ collision_mask = 7
 [node name="InteractDetection" type="RayCast2D" parent="." index="2"]
 target_position = Vector2(0, 32)
 collision_mask = 1024
+
+[node name="ComponentContainer" parent="." index="3"]
+unique_name_in_owner = true
 
 [node name="MovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("interaction_detector", "target") instance=ExtResource("2_t3ryb")]
 speed = 8405
@@ -50,6 +53,7 @@ movement_component = NodePath("../../ComponentContainer/MovementComponent")
 building_component = NodePath("../../ComponentContainer/BuildingComponent")
 
 [connection signal="close_dialog" from="ComponentContainer/DialogComponent" to="." method="_on_dialog_component_close_dialog"]
+[connection signal="close_dialog" from="ComponentContainer/DialogComponent" to="Camera2D" method="_on_player_dialog_state_close_dialog_press"]
 [connection signal="close_dialog" from="ComponentContainer/DialogComponent" to="StateManager/PlayerDialogState" method="_on_dialog_component_close_dialog"]
 [connection signal="start_dialog" from="ComponentContainer/DialogComponent" to="Camera2D" method="_on_dialog_component_start_dialog"]
 [connection signal="start_dialog" from="ComponentContainer/DialogComponent" to="StateManager/PlayerDialogState" method="_on_dialog_component_start_dialog"]

@@ -1,6 +1,6 @@
 extends Node
 class_name BaseState
-enum States {WAIT, WALK, DIALOG, BUILD, TASK}
+enum States {WAIT=0, WALK=1, DIALOG=2, BUILD=3, TASK=4}
 
 signal transition(new_state: States, args)
 

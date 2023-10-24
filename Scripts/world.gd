@@ -13,6 +13,7 @@ class_name World
 
 @export var island_size: float = 64
 @export var resource_node: int = 1
+@export_range(-1,1) var ocean_level_parameter:float = 0
 
 var noise = FastNoiseLite.new()
 var chunk_size = 64
@@ -54,7 +55,7 @@ func _ready():
 	generate_resources()
 	spawn_location_vector = spawn_location()
 	
-	call_deferred("spawn_npcs", 3)
+	call_deferred("spawn_npcs", 1)
 	call_deferred("spawn_player")
 	pass # Replace with function body.
 
@@ -121,7 +122,7 @@ func generate_chunk(chunk_pos:Vector2i):
 		for y in range(chunk_size):
 			var coord = Vector2i(x + chunk_pos.x * chunk_size, y + chunk_pos.y * chunk_size)
 			var noise_value = get_island_noise(coord, island_size)
-			if noise_value > 0:
+			if noise_value > ocean_level_parameter:
 				tile_map.set_cell(0,coord,2,ground_tile)
 				walkable_tile.append(coord)
 			else:
