@@ -77,7 +77,7 @@ func _send_to_location(location):
 		return
 	dialog_with.state_manager.transition(BaseState.States.TASK)
 	var npc_movement:AutoMovementComponent = dialog_with.components[BaseComponent.Components.MOVE]
-	
+	npc_movement.task_reset()
 	#determine closest object to NPC with matching location group
 	#pass these as a task_destination array to AutoMovmentComponent
 	#AutoMovementComponent will loop through these 2 destinations while not in task state
@@ -91,8 +91,8 @@ func _send_to_location(location):
 			var dist_to_destination = dialog_with.global_position.distance_to(destination.global_position)
 			if dist_to_structure < dist_to_destination:
 				destination = structure
-	var current_position = dialog_with.global_position
-	npc_movement.task_destinations = [destination.global_position,current_position]
+	var current_position = dialog_with.position
+	npc_movement.task_destinations = [destination.position,current_position]
 	npc_movement.is_moving = true
 	npc_movement.pause = false
 	call_deferred("_on_close_button_pressed")
@@ -100,9 +100,7 @@ func _send_to_location(location):
 func _stop_task():
 
 	var npc_movement:AutoMovementComponent = dialog_with.components[BaseComponent.Components.MOVE]
-	npc_movement.task_destinations.clear()
-	npc_movement.is_moving = false
-	npc_movement.pause = true
+	npc_movement.task_reset()
 	dialog_with.state_manager.transition(BaseState.States.WAIT)
 	call_deferred("_on_close_button_pressed")
 	
