@@ -81,18 +81,33 @@ func _send_to_location(location):
 	#determine closest object to NPC with matching location group
 	#pass these as a task_destination array to AutoMovmentComponent
 	#AutoMovementComponent will loop through these 2 destinations while not in task state
-	var destination
+	var task_dest
+	var second_dest
 	for structure in dialog_with.curr_world.structure_container.get_children():
+		#use "location" string to find nodes of the correct resource
 		if structure.is_in_group(location):
-			if !destination:
-				destination = structure 
+			if !task_dest:
+				task_dest = structure 
 				continue
 			var dist_to_structure = dialog_with.global_position.distance_to(structure.global_position)
-			var dist_to_destination = dialog_with.global_position.distance_to(destination.global_position)
+			var dist_to_destination = dialog_with.global_position.distance_to(task_dest.global_position)
 			if dist_to_structure < dist_to_destination:
-				destination = structure
-	var current_position = dialog_with.position
-	npc_movement.task_destinations = [destination.position,current_position]
+				task_dest = structure
+				
+		#find resource depots
+		if structure.is_in_group("resource_depot"):
+			if !second_dest:
+				second_dest = structure
+				continue
+			var dist_to_structure = dialog_with.global_position.distance_to(structure.global_position)
+			var dist_to_destination = dialog_with.global_position.distance_to(second_dest.global_position)
+			if dist_to_structure < dist_to_destination:
+				second_dest= structure
+			
+	if !second_dest:
+		second_dest = dialog_with
+	
+	npc_movement.task_destinations = [task_dest.position,second_dest.position]
 	npc_movement.is_moving = true
 	npc_movement.pause = false
 	call_deferred("_on_close_button_pressed")
