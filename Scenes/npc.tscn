@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5prxw020l8d3"]
+[gd_scene load_steps=9 format=3 uid="uid://jp1n3b7gsbwu"]
 
 [ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_foj0a"]
 [ext_resource type="PackedScene" uid="uid://cvd4ox7np0pw3" path="res://Scenes/relationship_component.tscn" id="3_4kcfv"]
@@ -45,5 +45,6 @@ movement_range = 5.0
 [node name="NPCDialogState" parent="StateManager" index="3" node_paths=PackedStringArray("movement_component") instance=ExtResource("6_jrb5q")]
 movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 
-[node name="NPCTaskState" parent="StateManager" index="4" instance=ExtResource("8_12sv3")]
+[node name="NPCTaskState" parent="StateManager" index="4" node_paths=PackedStringArray("movement_component") instance=ExtResource("8_12sv3")]
+movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 state = 4

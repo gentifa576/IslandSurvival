@@ -10,10 +10,19 @@ var pause = false
 
 #PASSED FROM PLAYER'S DIALOGUE COMPONENT
 var task_destinations = []
+var task_current_step = 0
+var task_in_progress = false
 
 func initialize():
 	destinations = []
 	pass
+
+func task_reset():
+	task_destinations.clear()
+	task_current_step = 0
+	task_in_progress = false
+	is_moving = false
+	pause = true
 
 func component_process(_delta):
 	if pause:
@@ -29,19 +38,29 @@ func component_physics_process(delta):
 	if is_moving:
 		target.move_and_slide()
 	pass
-	
+
+func return_task_path():
+	var path = target.curr_world.get_pathfind(target.curr_world.local_to_map_coord(target.position) - Vector2i(0,1), 
+				target.curr_world.local_to_map_coord(task_destinations[task_current_step]))
+
+	print(path)
+	task_current_step = (task_current_step + 1) % task_destinations.size()
+	return path
+
 func calculate_movement(delta):
 	if destinations.size() == 0:
 		target_reached.emit()
 		is_moving = false
+		task_in_progress = false 
 		#prevent break when tasks available
-		if task_destinations.size() == 0:return
+		if task_destinations.size() == 0:
+			return
 
-	#FORCE DESTINATION UPDATES FROM task_destinations PASSED FROM DIALOGUE
-	if task_destinations.size() > 0 && destinations.size() == 0:
-		destinations.insert(0,task_destinations[0])
-		destinations.insert(1,task_destinations[1])
-		print(task_destinations)
+	if target.state_manager.current_state == BaseState.States.TASK:
+		if !task_in_progress:
+			destinations = return_task_path()
+			task_in_progress = true
+	
 
 	var next_path = destinations[0]
 	var next_path_position = next_path
@@ -54,4 +73,5 @@ func calculate_movement(delta):
 
 	if target.position.distance_to(next_path_position) < 1:
 		destinations.remove_at(0)
+
 

@@ -1,5 +1,7 @@
 extends BaseState
 
+@export var movement_component:AutoMovementComponent
+
 func enter():
 	pass
 	
