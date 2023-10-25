@@ -13,7 +13,9 @@ class_name World
 
 @export var island_size: float = 64
 @export var resource_node: int = 1
-@export_range(-1,1) var ocean_level_parameter:float = 0
+@export_range(-1,1) var ocean_level_parameter:float = -0.1
+@export_range(0,1) var ground_altitude_parameter:float = 0.05
+@export_range(0,1) var ocean_altitude_parameter:float = 0.05
 
 var noise = FastNoiseLite.new()
 var chunk_size = 64
@@ -27,12 +29,18 @@ var forest_texture
 var cave_locations = []
 var forest_locations = []
 
+
+
 var spawn_location_vector: Vector2
 var walkable_tile = []
 
 #naive 2 tile solution for atlas
 var ground_tile = Vector2i(0,0)
 var water_tile = Vector2i(1,0)
+
+var ground_tiles = [Vector2i(0,0),Vector2i(1,0),Vector2i(2,0)]
+var water_tiles = [Vector2i(0,1),Vector2i(1,1),Vector2i(2,1)]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,7 +63,7 @@ func _ready():
 	generate_resources()
 	spawn_location_vector = spawn_location()
 	
-	call_deferred("spawn_npcs", 1)
+	call_deferred("spawn_npcs", 3)
 	call_deferred("spawn_player")
 	pass # Replace with function body.
 
@@ -122,11 +130,23 @@ func generate_chunk(chunk_pos:Vector2i):
 		for y in range(chunk_size):
 			var coord = Vector2i(x + chunk_pos.x * chunk_size, y + chunk_pos.y * chunk_size)
 			var noise_value = get_island_noise(coord, island_size)
-			if noise_value > ocean_level_parameter:
-				tile_map.set_cell(0,coord,2,ground_tile)
+			if noise_value >= ocean_level_parameter:
+				var ground_level = noise_value - ocean_level_parameter
+				var ground_tile2 = ground_tiles[2]
+				for i in range(1,4):
+					if ground_level < i * ground_altitude_parameter:
+						ground_tile2 = ground_tiles[i-1]
+						break
+				tile_map.set_cell(0,coord,1,ground_tile2)
 				walkable_tile.append(coord)
 			else:
-				tile_map.set_cell(0,coord,2,water_tile)
+				var ocean_level = noise_value + ocean_level_parameter
+				var water_tile2 = water_tiles[0]
+				for i in range(1,4):
+					if ocean_level > i * ocean_altitude_parameter:
+						water_tile2 = water_tiles[i-1]
+						break
+				tile_map.set_cell(0,coord,1,water_tile2)
 		pass
 		
 func generate_resources():

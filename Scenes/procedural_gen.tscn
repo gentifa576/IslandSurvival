@@ -39,11 +39,11 @@ layer_3/tile_data = PackedInt32Array()
 script = ExtResource("3_37emn")
 
 [node name="DayTimer" type="Timer" parent="World"]
-wait_time = 5.0
+wait_time = 2.0
 one_shot = true
 
 [node name="NightTimer" type="Timer" parent="World"]
-wait_time = 5.0
+wait_time = 60.0
 one_shot = true
 
 [node name="StructureContainer" type="Node2D" parent="World" node_paths=PackedStringArray("curr_world")]

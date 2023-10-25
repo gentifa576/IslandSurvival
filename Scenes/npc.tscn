@@ -45,6 +45,5 @@ movement_range = 5.0
 [node name="NPCDialogState" parent="StateManager" index="3" node_paths=PackedStringArray("movement_component") instance=ExtResource("6_jrb5q")]
 movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 
-[node name="NPCTaskState" parent="StateManager" index="4" node_paths=PackedStringArray("movement_component") instance=ExtResource("8_12sv3")]
-movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
+[node name="NPCTaskState" parent="StateManager" index="4" instance=ExtResource("8_12sv3")]
 state = 4
