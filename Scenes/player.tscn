@@ -22,7 +22,7 @@ collision_mask = 1024
 unique_name_in_owner = true
 
 [node name="MovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("interaction_detector", "target") instance=ExtResource("2_t3ryb")]
-speed = 8405
+speed = 17465
 interaction_detector = NodePath("../../InteractDetection")
 target = NodePath("../..")
 
