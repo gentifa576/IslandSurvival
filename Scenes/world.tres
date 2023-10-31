@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cwof2kkqk23cl"]
 
-[ext_resource type="Texture2D" path="res://Asset/Image/ground_tiles1.png" id="1_vohyo"]
+[ext_resource type="Texture2D" uid="uid://ch4qdnl4s1igy" path="res://Asset/Image/ground_tiles1.png" id="1_vohyo"]
 [ext_resource type="Texture2D" uid="uid://b5cm3oarw261l" path="res://Asset/Image/tileset.png" id="1_yp00u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ydeo"]

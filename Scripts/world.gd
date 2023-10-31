@@ -8,8 +8,8 @@ class_name World
 @onready var npc_scene:PackedScene = preload("res://Scenes/npc.tscn")
 @onready var player_scene:PackedScene = preload("res://Scenes/player.tscn")
 @onready var structure_scene:PackedScene = preload("res://Scenes/structure.tscn")
-@onready var cave_image = preload("res://Asset/Image/cave.png")
-@onready var forest_image = preload("res://Asset/Image/forest.png")
+@onready var cave_image = preload("res://Asset/Image/cave2.png")
+@onready var forest_image = preload("res://Asset/Image/forest2.png")
 
 @export var island_size: float = 64
 @export var resource_node: int = 1

@@ -1,15 +1,15 @@
 [gd_scene load_steps=9 format=3 uid="uid://de4lscyf6orq6"]
 
-[ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_s4ips"]
-[ext_resource type="PackedScene" uid="uid://jds8bu6kwcmg" path="res://Scenes/movement_component.tscn" id="2_t3ryb"]
-[ext_resource type="PackedScene" uid="uid://qt3fs80beqjh" path="res://Scenes/dialog_component.tscn" id="3_vpicb"]
-[ext_resource type="PackedScene" uid="uid://dspgmekg055h2" path="res://Scenes/States/player_dialog_state.tscn" id="4_har5j"]
-[ext_resource type="PackedScene" uid="uid://bttwdk4fk5ii2" path="res://Scenes/building_component.tscn" id="4_ycnvt"]
-[ext_resource type="Script" path="res://Scenes/PlayerCamera2D.gd" id="5_gocd3"]
-[ext_resource type="PackedScene" uid="uid://midd2jtm5y3i" path="res://Scenes/States/player_walking_state.tscn" id="5_txu31"]
-[ext_resource type="PackedScene" uid="uid://ummpo0s7ar22" path="res://Scenes/States/player_building_state.tscn" id="6_kqu05"]
+[ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_rk32c"]
+[ext_resource type="PackedScene" uid="uid://jds8bu6kwcmg" path="res://Scenes/movement_component.tscn" id="2_82s45"]
+[ext_resource type="PackedScene" uid="uid://qt3fs80beqjh" path="res://Scenes/dialog_component.tscn" id="3_85tt3"]
+[ext_resource type="PackedScene" uid="uid://bttwdk4fk5ii2" path="res://Scenes/building_component.tscn" id="4_aot25"]
+[ext_resource type="Script" path="res://Scenes/PlayerCamera2D.gd" id="5_0a8hn"]
+[ext_resource type="PackedScene" uid="uid://dspgmekg055h2" path="res://Scenes/States/player_dialog_state.tscn" id="6_xygqn"]
+[ext_resource type="PackedScene" uid="uid://midd2jtm5y3i" path="res://Scenes/States/player_walking_state.tscn" id="7_sggml"]
+[ext_resource type="PackedScene" uid="uid://ummpo0s7ar22" path="res://Scenes/States/player_building_state.tscn" id="8_tvfer"]
 
-[node name="Player" instance=ExtResource("1_s4ips")]
+[node name="Player" instance=ExtResource("1_rk32c")]
 z_index = 10
 collision_layer = 512
 collision_mask = 7
@@ -21,34 +21,34 @@ collision_mask = 1024
 [node name="ComponentContainer" parent="." index="3"]
 unique_name_in_owner = true
 
-[node name="MovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("interaction_detector", "target") instance=ExtResource("2_t3ryb")]
+[node name="MovementComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("interaction_detector", "target") instance=ExtResource("2_82s45")]
 speed = 17465
 interaction_detector = NodePath("../../InteractDetection")
 target = NodePath("../..")
 
-[node name="DialogComponent" parent="ComponentContainer" index="1" node_paths=PackedStringArray("dialog_raycast", "target") instance=ExtResource("3_vpicb")]
+[node name="DialogComponent" parent="ComponentContainer" index="1" node_paths=PackedStringArray("dialog_raycast", "target") instance=ExtResource("3_85tt3")]
 dialog_raycast = NodePath("../../InteractDetection")
 target = NodePath("../..")
 
-[node name="BuildingComponent" parent="ComponentContainer" index="2" node_paths=PackedStringArray("direction_raycast", "target") instance=ExtResource("4_ycnvt")]
+[node name="BuildingComponent" parent="ComponentContainer" index="2" node_paths=PackedStringArray("direction_raycast", "target") instance=ExtResource("4_aot25")]
 direction_raycast = NodePath("../../InteractDetection")
 target = NodePath("../..")
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 zoom = Vector2(0.7, 0.7)
-script = ExtResource("5_gocd3")
+script = ExtResource("5_0a8hn")
 
 [node name="StateManager" parent="." index="5"]
 current_state = 1
 
-[node name="PlayerDialogState" parent="StateManager" index="0" node_paths=PackedStringArray("dialog_component") instance=ExtResource("4_har5j")]
+[node name="PlayerDialogState" parent="StateManager" index="0" node_paths=PackedStringArray("dialog_component") instance=ExtResource("6_xygqn")]
 dialog_component = NodePath("../../ComponentContainer/DialogComponent")
 
-[node name="PlayerWalkingState" parent="StateManager" index="1" node_paths=PackedStringArray("movement_component", "dialog_component") instance=ExtResource("5_txu31")]
+[node name="PlayerWalkingState" parent="StateManager" index="1" node_paths=PackedStringArray("movement_component", "dialog_component") instance=ExtResource("7_sggml")]
 movement_component = NodePath("../../ComponentContainer/MovementComponent")
 dialog_component = NodePath("../../ComponentContainer/DialogComponent")
 
-[node name="PlayerBuildingState" parent="StateManager" index="2" node_paths=PackedStringArray("movement_component", "building_component") instance=ExtResource("6_kqu05")]
+[node name="PlayerBuildingState" parent="StateManager" index="2" node_paths=PackedStringArray("movement_component", "building_component") instance=ExtResource("8_tvfer")]
 movement_component = NodePath("../../ComponentContainer/MovementComponent")
 building_component = NodePath("../../ComponentContainer/BuildingComponent")
 

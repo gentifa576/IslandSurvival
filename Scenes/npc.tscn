@@ -1,15 +1,15 @@
 [gd_scene load_steps=9 format=3 uid="uid://jp1n3b7gsbwu"]
 
-[ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_foj0a"]
-[ext_resource type="PackedScene" uid="uid://cvd4ox7np0pw3" path="res://Scenes/relationship_component.tscn" id="3_4kcfv"]
-[ext_resource type="PackedScene" uid="uid://bixcgee8vg7da" path="res://Scenes/auto_movement_component.tscn" id="3_tlusk"]
-[ext_resource type="PackedScene" uid="uid://4uqt0uve0510" path="res://Scenes/States/npc_waiting_state.tscn" id="4_o2g0w"]
-[ext_resource type="PackedScene" uid="uid://cb12vcailxu58" path="res://Scenes/States/npc_walking_state.tscn" id="5_2x36h"]
-[ext_resource type="Script" path="res://Scripts/Label.gd" id="5_3xpj3"]
-[ext_resource type="PackedScene" uid="uid://ds7n6wxr5f1wr" path="res://Scenes/States/npc_dialog_state.tscn" id="6_jrb5q"]
-[ext_resource type="PackedScene" uid="uid://c73t0x7y5hwvs" path="res://Scenes/States/npc_task_state.tscn" id="8_12sv3"]
+[ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_i0qli"]
+[ext_resource type="PackedScene" uid="uid://cvd4ox7np0pw3" path="res://Scenes/relationship_component.tscn" id="2_mefmi"]
+[ext_resource type="PackedScene" uid="uid://bixcgee8vg7da" path="res://Scenes/auto_movement_component.tscn" id="3_65ali"]
+[ext_resource type="Script" path="res://Scripts/Label.gd" id="4_xkgy0"]
+[ext_resource type="PackedScene" uid="uid://4uqt0uve0510" path="res://Scenes/States/npc_waiting_state.tscn" id="5_gf6w0"]
+[ext_resource type="PackedScene" uid="uid://cb12vcailxu58" path="res://Scenes/States/npc_walking_state.tscn" id="6_ai7rb"]
+[ext_resource type="PackedScene" uid="uid://ds7n6wxr5f1wr" path="res://Scenes/States/npc_dialog_state.tscn" id="7_tlyev"]
+[ext_resource type="PackedScene" uid="uid://c73t0x7y5hwvs" path="res://Scenes/States/npc_task_state.tscn" id="8_ss3q6"]
 
-[node name="NPC" instance=ExtResource("1_foj0a")]
+[node name="NPC" instance=ExtResource("1_i0qli")]
 z_index = 10
 collision_layer = 1024
 collision_mask = 7
@@ -20,10 +20,10 @@ color = Color(0.780392, 0.764706, 0.470588, 1)
 [node name="ComponentContainer" parent="." index="2"]
 unique_name_in_owner = true
 
-[node name="RelationshipComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("target") instance=ExtResource("3_4kcfv")]
+[node name="RelationshipComponent" parent="ComponentContainer" index="0" node_paths=PackedStringArray("target") instance=ExtResource("2_mefmi")]
 target = NodePath("../..")
 
-[node name="AutoMovementComponent" parent="ComponentContainer" index="1" node_paths=PackedStringArray("target") instance=ExtResource("3_tlusk")]
+[node name="AutoMovementComponent" parent="ComponentContainer" index="1" node_paths=PackedStringArray("target") instance=ExtResource("3_65ali")]
 speed = 6400
 target = NodePath("../..")
 
@@ -34,16 +34,16 @@ offset_top = -39.0
 offset_right = 20.0
 offset_bottom = -16.0
 horizontal_alignment = 1
-script = ExtResource("5_3xpj3")
+script = ExtResource("4_xkgy0")
 
-[node name="NPCWaitingState" parent="StateManager" index="1" instance=ExtResource("4_o2g0w")]
+[node name="NPCWaitingState" parent="StateManager" index="1" instance=ExtResource("5_gf6w0")]
 
-[node name="NPCWalkingState" parent="StateManager" index="2" node_paths=PackedStringArray("movement_component") instance=ExtResource("5_2x36h")]
+[node name="NPCWalkingState" parent="StateManager" index="2" node_paths=PackedStringArray("movement_component") instance=ExtResource("6_ai7rb")]
 movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 movement_range = 5.0
 
-[node name="NPCDialogState" parent="StateManager" index="3" node_paths=PackedStringArray("movement_component") instance=ExtResource("6_jrb5q")]
+[node name="NPCDialogState" parent="StateManager" index="3" node_paths=PackedStringArray("movement_component") instance=ExtResource("7_tlyev")]
 movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 
-[node name="NPCTaskState" parent="StateManager" index="4" instance=ExtResource("8_12sv3")]
+[node name="NPCTaskState" parent="StateManager" index="4" instance=ExtResource("8_ss3q6")]
 state = 4
