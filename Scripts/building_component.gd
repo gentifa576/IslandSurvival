@@ -31,7 +31,7 @@ func _input(event):
 	if event.is_action_pressed("Build"):
 		placement.visible = true
 #		print(direction_raycast.target_position)
-		target.state_manager.transition(BaseState.States.BUILD)
+		target.state_manager.transition(BaseState.States.BUILD, {})
 		pass
 	
 	if can_build && direction_raycast.target_position != Vector2.ZERO && event.is_action_pressed("Interact") && placement.is_valid:
@@ -41,7 +41,7 @@ func _input(event):
 		structure.add_to_group("resource_depot")
 		var coord = target.curr_world.local_to_map_coord(target.global_position + direction_raycast.target_position * 3)
 		target.curr_world.structure_container.add_structure(coord, structure)
-		target.state_manager.transition(BaseState.States.WALK)
+		target.state_manager.transition(BaseState.States.WALK, {})
 		
 		placement.visible = false
 		pass

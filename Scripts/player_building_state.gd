@@ -5,7 +5,7 @@ extends BaseState
 
 var direction
 
-func enter():
+func enter(param: Dictionary):
 	movement_component.paused = false
 	building_component.can_build = true
 	pass

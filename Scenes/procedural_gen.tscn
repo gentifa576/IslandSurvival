@@ -89,3 +89,7 @@ one_shot = true
 z_index = 20
 script = ExtResource("4_3klff")
 curr_world = NodePath("..")
+
+[node name="DebugLine" type="Line2D" parent="World"]
+z_index = 4000
+default_color = Color(1, 0, 0, 1)

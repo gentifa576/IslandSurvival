@@ -2,7 +2,7 @@ extends BaseState
 
 @export var movement_component:AutoMovementComponent
 
-func enter():
+func enter(param: Dictionary):
 	movement_component.pause = true
 	
 func exit():

@@ -7,19 +7,23 @@ extends BaseState
 
 var path: PackedVector2Array
 var destination
+var next_state: States = States.WAIT
 
-func enter():
+func enter(param: Dictionary):
 	movement_component.target_reached.connect(reached)
+	if (param.has(Param.NEXT_STATE)):
+		next_state = param[Param.NEXT_STATE];
 	
-	if movement_component.task_destinations.is_empty():
-		destination = randomized_destination()
+	if (param.has(Param.DESTINATION)):
+		destination = param[Param.DESTINATION].position
 	else:
-		destination = self.global_position
+		destination = randomized_destination()
+	
 	var target = movement_component.target
 	var curr_world = target.curr_world
 	find_random_target(curr_world)
 	destination = curr_world.local_to_map_coord(destination)
-#	print("moving to ", destination)
+	print("moving to ", destination)
 	if destination:
 		var val = curr_world.get_pathfind(curr_world.local_to_map_coord(target.position), destination)
 		movement_component.destinations = val
@@ -44,7 +48,7 @@ func find_random_target(curr_world):
 	
 	if !destination:
 		print("can't find destination")
-		transition.emit(States.WAIT)
+		transition.emit(States.WAIT, {})
 
 #func _unhandled_input(event):
 #	if event is InputEventMouseButton && event.pressed:
@@ -54,9 +58,7 @@ func find_random_target(curr_world):
 #		movement_component.destination = destination
 
 func reached():
-	#PREVENT STATE CHANGE BACK TO WAIT WHILE IN TASK
-	if movement_component.task_destinations.is_empty():
-		transition.emit(States.WAIT)
+	transition.emit(next_state, {})
 	pass
 
 func randomized_destination():

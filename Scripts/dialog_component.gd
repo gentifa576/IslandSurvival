@@ -57,6 +57,8 @@ func _input(event):
 		if dialog_raycast.get_collider().components.has(BaseComponent.Components.RELATIONSHIP):
 			dialog_with = dialog_raycast.get_collider()
 			dialog_with_component = dialog_with.components[BaseComponent.Components.RELATIONSHIP]
+			if (!dialog_with_component.interactable):
+				return
 			canvas_layer.visible = true
 			start_dialog.emit(dialog_with)
 			set_process_input(false)
@@ -75,9 +77,8 @@ func _input_dialog_close():
 func _send_to_location(location):
 	if !location:
 		return
-	dialog_with.state_manager.transition(BaseState.States.TASK)
 	var npc_movement:AutoMovementComponent = dialog_with.components[BaseComponent.Components.MOVE]
-	npc_movement.task_reset()
+#	npc_movement.task_reset()
 	#determine closest object to NPC with matching location group
 	#pass these as a task_destination array to AutoMovmentComponent
 	#AutoMovementComponent will loop through these 2 destinations while not in task state
@@ -107,15 +108,20 @@ func _send_to_location(location):
 	if !second_dest:
 		second_dest = dialog_with
 	
-	npc_movement.task_destinations = [task_dest.position,second_dest.position]
+#	npc_movement.task_destinations = [task_dest.position,second_dest.position]
 	npc_movement.is_moving = true
 	npc_movement.pause = false
+	dialog_with.curr_world.debug_pathfind(second_dest.position, task_dest.position)
+	dialog_with.get_child()
+	dialog_with.state_manager.transition(BaseState.States.WALK, 
+	{
+		BaseState.Param.NEXT_STATE: BaseState.States.TASK, 
+		BaseState.Param.DESTINATION: task_dest
+	})
 	call_deferred("_on_close_button_pressed")
 	
 func _stop_task():
-
 	var npc_movement:AutoMovementComponent = dialog_with.components[BaseComponent.Components.MOVE]
-	npc_movement.task_reset()
-	dialog_with.state_manager.transition(BaseState.States.WAIT)
+	dialog_with.state_manager.transition(BaseState.States.WAIT, {})
 	call_deferred("_on_close_button_pressed")
 	

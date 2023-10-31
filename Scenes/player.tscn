@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_rk32c"]
 [ext_resource type="PackedScene" uid="uid://jds8bu6kwcmg" path="res://Scenes/movement_component.tscn" id="2_82s45"]
 [ext_resource type="PackedScene" uid="uid://qt3fs80beqjh" path="res://Scenes/dialog_component.tscn" id="3_85tt3"]
-[ext_resource type="PackedScene" uid="uid://bttwdk4fk5ii2" path="res://Scenes/building_component.tscn" id="4_aot25"]
+[ext_resource type="PackedScene" uid="uid://bttwdk4fk5ii2" path="res://Scenes/building_component.tscn" id="4_pt083"]
 [ext_resource type="Script" path="res://Scenes/PlayerCamera2D.gd" id="5_0a8hn"]
 [ext_resource type="PackedScene" uid="uid://dspgmekg055h2" path="res://Scenes/States/player_dialog_state.tscn" id="6_xygqn"]
 [ext_resource type="PackedScene" uid="uid://midd2jtm5y3i" path="res://Scenes/States/player_walking_state.tscn" id="7_sggml"]
@@ -30,7 +30,7 @@ target = NodePath("../..")
 dialog_raycast = NodePath("../../InteractDetection")
 target = NodePath("../..")
 
-[node name="BuildingComponent" parent="ComponentContainer" index="2" node_paths=PackedStringArray("direction_raycast", "target") instance=ExtResource("4_aot25")]
+[node name="BuildingComponent" parent="ComponentContainer" index="2" node_paths=PackedStringArray("direction_raycast", "target") instance=ExtResource("4_pt083")]
 direction_raycast = NodePath("../../InteractDetection")
 target = NodePath("../..")
 

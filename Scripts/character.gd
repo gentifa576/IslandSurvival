@@ -26,8 +26,6 @@ func _physics_process(delta):
 	for component in components.values():
 		component.component_physics_process(delta)
 	state_manager.physics_process(delta)
-	
-
 
 func _on_dialog_component_close_dialog():
 	pass # Replace with function body.

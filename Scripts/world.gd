@@ -51,10 +51,11 @@ func _ready():
 	night_timer.timeout.connect(night_end)
 	day_timer.start()
 	
-	noise.seed = randi() + 1
+#	noise.seed = randi() + 1
 #	noise.seed = -1779600403
 #	noise.seed = 1340113787
 #	noise.seed = 414202871
+	noise.seed = -1038809495
 	print(noise.seed)
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	noise.frequency = 0.01
@@ -78,18 +79,7 @@ func local_to_map_walkable(coord):
 	return map_coord_walkable(map_coord)
 		
 func map_coord_walkable(map_coord):
-	var tile_data_floor = tile_map.get_cell_tile_data(0, map_coord)
-	if tile_data_floor:
-		var tile_data_obstacle = tile_map.get_cell_tile_data(1, map_coord)
-		var tile_data_structure = tile_map.get_cell_tile_data(3, map_coord)
-		var tile_walkable = tile_data_floor.get_custom_data("walkable")
-		if tile_data_obstacle:
-			return tile_walkable && tile_data_obstacle.get_custom_data("walkable")
-		if tile_data_structure:
-			return tile_walkable && tile_data_structure.get_custom_data("walkable")
-		return tile_walkable
-	else:
-		return false
+	return tile_map.walkable_cell(map_coord)
 
 func local_to_map_coord(coord):
 	var map_coord = tile_map.local_to_map(coord)
@@ -129,6 +119,8 @@ func generate_chunk(chunk_pos:Vector2i):
 	for x in range(chunk_size):
 		for y in range(chunk_size):
 			var coord = Vector2i(x + chunk_pos.x * chunk_size, y + chunk_pos.y * chunk_size)
+			if (coord == Vector2i(54, 30)):
+				var debug = coord
 			var noise_value = get_island_noise(coord, island_size)
 			if noise_value >= ocean_level_parameter:
 				var ground_level = noise_value - ocean_level_parameter
@@ -229,3 +221,11 @@ func night_end():
 	day_timer.start()
 	tile_map.day_transition_target = Global.Cycle.DAY
 	pass
+	
+func debug_pathfind(from:Vector2, to: Vector2):
+	var line: Line2D = $DebugLine
+	line.clear_points()
+	var destinations = get_pathfind(local_to_map_coord(from), local_to_map_coord(to))
+	line.default_color = Color.RED
+	line.points = destinations
+	print(destinations)

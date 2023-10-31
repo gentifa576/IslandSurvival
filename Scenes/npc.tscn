@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://jp1n3b7gsbwu"]
+[gd_scene load_steps=10 format=3 uid="uid://jp1n3b7gsbwu"]
 
 [ext_resource type="PackedScene" uid="uid://cdvrudju6oo3f" path="res://Scenes/character.tscn" id="1_i0qli"]
 [ext_resource type="PackedScene" uid="uid://cvd4ox7np0pw3" path="res://Scenes/relationship_component.tscn" id="2_mefmi"]
 [ext_resource type="PackedScene" uid="uid://bixcgee8vg7da" path="res://Scenes/auto_movement_component.tscn" id="3_65ali"]
+[ext_resource type="PackedScene" uid="uid://ccbmonm142e88" path="res://Scenes/stats_component.tscn" id="4_kgh4g"]
 [ext_resource type="Script" path="res://Scripts/Label.gd" id="4_xkgy0"]
 [ext_resource type="PackedScene" uid="uid://4uqt0uve0510" path="res://Scenes/States/npc_waiting_state.tscn" id="5_gf6w0"]
 [ext_resource type="PackedScene" uid="uid://cb12vcailxu58" path="res://Scenes/States/npc_walking_state.tscn" id="6_ai7rb"]
@@ -27,6 +28,12 @@ target = NodePath("../..")
 speed = 6400
 target = NodePath("../..")
 
+[node name="StatsComponent" parent="ComponentContainer" index="2" node_paths=PackedStringArray("target") instance=ExtResource("4_kgh4g")]
+capacity = 10
+mining = 10
+lumbery = 10
+target = NodePath("../..")
+
 [node name="Label" type="Label" parent="StateManager" index="0"]
 z_index = 10
 offset_left = -20.0
@@ -45,5 +52,8 @@ movement_range = 5.0
 [node name="NPCDialogState" parent="StateManager" index="3" node_paths=PackedStringArray("movement_component") instance=ExtResource("7_tlyev")]
 movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
 
-[node name="NPCTaskState" parent="StateManager" index="4" instance=ExtResource("8_ss3q6")]
+[node name="NPCTaskState" parent="StateManager" index="4" node_paths=PackedStringArray("movement_component", "stats_component", "relationship_component") instance=ExtResource("8_ss3q6")]
+movement_component = NodePath("../../ComponentContainer/AutoMovementComponent")
+stats_component = NodePath("../../ComponentContainer/StatsComponent")
+relationship_component = NodePath("../../ComponentContainer/RelationshipComponent")
 state = 4

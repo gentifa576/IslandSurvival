@@ -14,7 +14,7 @@ func start():
 	if !state_dictionary.has(current_state):
 		return
 	
-	state_dictionary[current_state].enter()
+	state_dictionary[current_state].enter({})
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,10 +30,10 @@ func physics_process(delta):
 	state_dictionary[current_state].physics_process(delta)
 	pass
 	
-func transition(new_state):
+func transition(new_state: BaseState.States, state_param: Dictionary):
 	if current_state != new_state:
 		state_dictionary[current_state].exit()
-		state_dictionary[new_state].enter()
+		state_dictionary[new_state].enter(state_param)
 		current_state = new_state
 #		if get_parent().name == "NPC": print(BaseState.States.find_key(new_state))
 	pass
