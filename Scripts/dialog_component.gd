@@ -111,12 +111,17 @@ func _send_to_location(location):
 #	npc_movement.task_destinations = [task_dest.position,second_dest.position]
 	npc_movement.is_moving = true
 	npc_movement.pause = false
+	dialog_with.components[BaseComponent.Components.TASK].target_destination = task_dest.position
+	dialog_with.components[BaseComponent.Components.TASK].deposit_destination = second_dest.position
+	if (location == "forest"):
+		dialog_with.components[BaseComponent.Components.TASK].resource_type = TaskComponent.Type.WOOD
+	if (location == "CAVE"):
+		dialog_with.components[BaseComponent.Components.TASK].resource_type = TaskComponent.Type.STONE
 	dialog_with.curr_world.debug_pathfind(second_dest.position, task_dest.position)
-	dialog_with.get_child()
 	dialog_with.state_manager.transition(BaseState.States.WALK, 
 	{
 		BaseState.Param.NEXT_STATE: BaseState.States.TASK, 
-		BaseState.Param.DESTINATION: task_dest
+		BaseState.Param.DESTINATION: task_dest.position
 	})
 	call_deferred("_on_close_button_pressed")
 	

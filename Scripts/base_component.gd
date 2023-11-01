@@ -1,7 +1,7 @@
 extends Node
 class_name BaseComponent
 
-enum Components {MOVE, ANIMATE, DIALOG, RELATIONSHIP, BUILDING, STATS}
+enum Components {MOVE, ANIMATE, DIALOG, RELATIONSHIP, BUILDING, STATS, TASK}
 
 @export var component_type: Components
 @export var target: Character

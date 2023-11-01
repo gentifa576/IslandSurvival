@@ -15,7 +15,7 @@ func enter(param: Dictionary):
 		next_state = param[Param.NEXT_STATE];
 	
 	if (param.has(Param.DESTINATION)):
-		destination = param[Param.DESTINATION].position
+		destination = param[Param.DESTINATION]
 	else:
 		destination = randomized_destination()
 	
