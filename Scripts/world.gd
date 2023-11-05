@@ -51,11 +51,11 @@ func _ready():
 	night_timer.timeout.connect(night_end)
 	day_timer.start()
 	
-#	noise.seed = randi() + 1
+	noise.seed = randi() + 1
 #	noise.seed = -1779600403
 #	noise.seed = 1340113787
 #	noise.seed = 414202871
-	noise.seed = -1038809495
+#	noise.seed = -1038809495
 	print(noise.seed)
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	noise.frequency = 0.01
@@ -229,3 +229,10 @@ func debug_pathfind(from:Vector2, to: Vector2):
 	line.default_color = Color.RED
 	line.points = destinations
 	print(destinations)
+
+
+
+
+func _on_button_pressed_reload_scene():
+	#fast reload, just start scene tree
+	get_tree().reload_current_scene()

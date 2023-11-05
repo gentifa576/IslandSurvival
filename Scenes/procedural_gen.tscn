@@ -93,3 +93,17 @@ curr_world = NodePath("..")
 [node name="DebugLine" type="Line2D" parent="World"]
 z_index = 4000
 default_color = Color(1, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WorldReset" type="Button" parent="CanvasLayer"]
+custom_minimum_size = Vector2(200, 100)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 94.0
+grow_vertical = 0
+text = "New World"
+
+[connection signal="pressed" from="CanvasLayer/WorldReset" to="World" method="_on_button_pressed_reload_scene"]

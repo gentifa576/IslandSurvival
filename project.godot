@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 Global_Resources="*res://Scripts/global_resources.gd"
 Global="*res://Scripts/global.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/mode=2
+
 [input]
 
 ui_left={
@@ -80,5 +85,4 @@ Cancel={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
