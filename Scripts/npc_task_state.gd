@@ -16,7 +16,7 @@ func enter(param: Dictionary):
 		resource_yield = stats_component.get_woodcutting_yield()
 	if task_component.resource_type == task_component.Type.STONE:
 		$Timer.wait_time = stats_component.get_mining_speed()
-		resource_yield = stats_component.get_mininig_yield()
+		resource_yield = stats_component.get_mining_yield()
 	$Timer.start()
 	pass
 	

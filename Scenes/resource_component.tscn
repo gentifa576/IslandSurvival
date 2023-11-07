@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvhplktiyfjxr"]
+
+[ext_resource type="Script" path="res://Scripts/resource_component.gd" id="1_7yrvl"]
+
+[node name="ResourceComponent" type="Node2D"]
+script = ExtResource("1_7yrvl")
+component_type = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_direction = 2
+offset_right = 54.0
+offset_bottom = 56.0
+
+[node name="Wood" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Wood: "
+
+[node name="Stone" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Stone: "

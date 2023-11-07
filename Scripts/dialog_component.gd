@@ -113,9 +113,10 @@ func _send_to_location(location):
 	npc_movement.pause = false
 	dialog_with.components[BaseComponent.Components.TASK].target_destination = task_dest.position
 	dialog_with.components[BaseComponent.Components.TASK].deposit_destination = second_dest.position
+	dialog_with.components[BaseComponent.Components.TASK].deposit_target = target
 	if (location == "forest"):
 		dialog_with.components[BaseComponent.Components.TASK].resource_type = TaskComponent.Type.WOOD
-	if (location == "CAVE"):
+	if (location == "cave"):
 		dialog_with.components[BaseComponent.Components.TASK].resource_type = TaskComponent.Type.STONE
 	dialog_with.curr_world.debug_pathfind(second_dest.position, task_dest.position)
 	dialog_with.state_manager.transition(BaseState.States.WALK, 

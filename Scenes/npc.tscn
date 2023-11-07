@@ -31,7 +31,7 @@ speed = 6400
 target = NodePath("../..")
 
 [node name="StatsComponent" parent="ComponentContainer" index="2" node_paths=PackedStringArray("target") instance=ExtResource("4_kgh4g")]
-capacity = 1
+capacity = 5
 mining = 10
 lumbery = 10
 target = NodePath("../..")

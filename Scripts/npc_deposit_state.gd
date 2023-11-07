@@ -4,6 +4,12 @@ extends BaseState
 @export var task_component: TaskComponent
 
 func enter(param: Dictionary):
+	var resource_component = task_component.deposit_target.components[BaseComponent.Components.RESOURCE]
+	if (task_component.resource_type == TaskComponent.Type.WOOD):
+		resource_component.wood += stat_component.current_capacity
+	if (task_component.resource_type == task_component.Type.STONE):
+		resource_component.stone += stat_component.current_capacity
+
 	stat_component.current_capacity = 0
 	$Timer.start()
 	# temporarily just clears out inventory, will to do on adding it to the deposit location

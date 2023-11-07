@@ -5,6 +5,7 @@ enum Type {WOOD, STONE}
 
 var target_destination: Vector2
 var deposit_destination: Vector2
+var deposit_target: Character
 var resource_type: Type
 
 func initialize():
