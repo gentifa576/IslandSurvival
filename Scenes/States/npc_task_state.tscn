@@ -7,4 +7,20 @@ script = ExtResource("1_my185")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = -5.0
+max_value = 1.0
+show_percentage = false
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

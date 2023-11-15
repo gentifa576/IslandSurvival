@@ -4,13 +4,14 @@ class_name StatsComponent
 @export var capacity :int
 @export var mining :int
 @export var lumbery :int
+# Might use this instead of the speed in movement component
+@export var movement_speed :int
 
 var current_capacity: int = 0:
 	set(val):
 		current_capacity = min(capacity, val)
 
-# Might use this instead of the speed in movement component
-@export var movement_speed :int
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +19,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -28,7 +29,8 @@ func get_mining_speed() -> int:
 
 func get_mining_yield() -> int:
 	# every 10 point mining yield is increased by 1
-	return mining / 10
+#	return mining / 10
+	return capacity #testing
 
 func get_woodcutting_speed() -> int:
 	# woodcutting is from 20s - 5s at the lowest per internal
@@ -36,4 +38,5 @@ func get_woodcutting_speed() -> int:
 	
 func get_woodcutting_yield() -> int:
 	# every 8 point wood yield is increased by 1
-	return lumbery / 8
+#	return lumbery / 8
+	return capacity #testing

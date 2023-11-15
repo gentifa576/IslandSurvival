@@ -7,7 +7,7 @@ signal transition(new_state: States, param: Dictionary)
 
 @export var state: States
 
-func enter(param: Dictionary):
+func enter(_param: Dictionary):
 	pass
 	
 func exit():
