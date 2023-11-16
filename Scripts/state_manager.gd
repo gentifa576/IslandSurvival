@@ -10,7 +10,6 @@ func start():
 		if child is BaseState:
 			child.transition.connect(transition)
 			state_dictionary[child.state] = child
-			
 	if !state_dictionary.has(current_state):
 		return
 	

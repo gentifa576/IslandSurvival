@@ -3,7 +3,7 @@ extends BaseState
 @export var movement_component: MovementComponent
 @export var dialog_component: DialogComponent
 
-func enter(param: Dictionary):
+func enter(_param: Dictionary):
 	movement_component.paused = false
 	dialog_component.set_process_input(true)
 	pass

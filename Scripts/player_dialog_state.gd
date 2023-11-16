@@ -4,7 +4,7 @@ extends BaseState
 signal close_dialog_press()
 var with:Character
 
-func enter(param: Dictionary):
+func enter(_param: Dictionary):
 	pass
 	
 func exit():

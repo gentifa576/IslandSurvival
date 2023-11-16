@@ -120,7 +120,7 @@ func generate_chunk(chunk_pos:Vector2i):
 		for y in range(chunk_size):
 			var coord = Vector2i(x + chunk_pos.x * chunk_size, y + chunk_pos.y * chunk_size)
 			if (coord == Vector2i(54, 30)):
-				var debug = coord
+				var _debug = coord
 			var noise_value = get_island_noise(coord, island_size)
 			if noise_value >= ocean_level_parameter:
 				var ground_level = noise_value - ocean_level_parameter

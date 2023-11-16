@@ -35,6 +35,12 @@ func component_physics_process(_delta):
 
 func _on_close_button_pressed():
 	close_dialog.emit()
+	
+	#fast fix - stuck in dialogue state, check if still in state, return to wait
+	#best fix would be to keep previous state when entering dialog, including things like task progress
+	if dialog_with.state_manager.current_state == BaseState.States.DIALOG:
+		dialog_with.state_manager.transition(BaseState.States.WAIT, {})
+	
 	initialize()
 	close_button.pressed.disconnect(_on_close_button_pressed)
 	talk_button.pressed.disconnect(_on_talk_button_pressed)
@@ -119,15 +125,18 @@ func _send_to_location(location):
 	if (location == "cave"):
 		dialog_with.components[BaseComponent.Components.TASK].resource_type = TaskComponent.Type.STONE
 	dialog_with.curr_world.debug_pathfind(second_dest.position, task_dest.position)
+	call_deferred("_on_close_button_pressed")
 	dialog_with.state_manager.transition(BaseState.States.WALK, 
 	{
 		BaseState.Param.NEXT_STATE: BaseState.States.TASK, 
 		BaseState.Param.DESTINATION: task_dest.position
 	})
-	call_deferred("_on_close_button_pressed")
+
 	
 func _stop_task():
-	var npc_movement:AutoMovementComponent = dialog_with.components[BaseComponent.Components.MOVE]
-	dialog_with.state_manager.transition(BaseState.States.WAIT, {})
+#	var npc_movement:AutoMovementComponent = dialog_with.components[BaseComponent.Components.MOVE]
 	call_deferred("_on_close_button_pressed")
+	dialog_with.state_manager.transition(BaseState.States.WAIT, {})
+
 	
+#

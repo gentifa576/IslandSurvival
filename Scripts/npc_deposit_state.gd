@@ -3,7 +3,7 @@ extends BaseState
 @export var stat_component: StatsComponent
 @export var task_component: TaskComponent
 
-func enter(param: Dictionary):
+func enter(_param: Dictionary):
 	var resource_component = task_component.deposit_target.components[BaseComponent.Components.RESOURCE]
 	if (task_component.resource_type == TaskComponent.Type.WOOD):
 		resource_component.wood += stat_component.current_capacity

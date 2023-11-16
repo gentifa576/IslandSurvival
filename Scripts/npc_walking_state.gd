@@ -23,7 +23,7 @@ func enter(param: Dictionary):
 	var curr_world = target.curr_world
 	find_random_target(curr_world)
 	destination = curr_world.local_to_map_coord(destination)
-	print("moving to ", destination)
+#	print("moving to ", destination)
 	if destination:
 		var val = curr_world.get_pathfind(curr_world.local_to_map_coord(target.position), destination)
 		movement_component.destinations = val

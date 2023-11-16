@@ -7,11 +7,13 @@ extends BaseState
 
 @onready var progress_bar: ProgressBar = $Control/ProgressBar
 var current_progress: float = 0 
+var in_progress: bool = false
 
 var resource_yield: int = 0
 
 
-func enter(param: Dictionary):
+func enter(_param: Dictionary):
+	in_progress = true
 	movement_component.pause = true
 #	movement_component.target.visible = false
 	relationship_component.interactable = false
@@ -34,10 +36,12 @@ func exit():
 	progress_bar.value = 0 
 	progress_bar.visible = false
 	current_progress = 0
+	in_progress = false
 	$Timer.stop()
 	pass
 
 func process(_delta):
+	#this code isn't being ran from state_manager
 	show_task_progress()
 
 func _process(_delta):
@@ -47,12 +51,16 @@ func physics_process(_delta):
 	pass
 
 func show_task_progress():
-	current_progress = float($Timer.time_left / $Timer.wait_time)
+	if !in_progress:
+		progress_bar.visible = false
+		return
+	current_progress = 1.0 - float($Timer.time_left / $Timer.wait_time)
+
 	progress_bar.value = current_progress
 	pass
 
 func _on_timer_timeout():
-	print(str(stats_component.current_capacity/ stats_component.capacity) + " - " + str(progress_bar.value))
+#	print(str(float(stats_component.current_capacity/ stats_component.capacity)) + " - " + str(progress_bar.value))
 	stats_component.current_capacity += resource_yield
 	if stats_component.current_capacity == stats_component.capacity:
 		transition.emit(BaseState.States.WALK, {

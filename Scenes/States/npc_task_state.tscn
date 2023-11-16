@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://c73t0x7y5hwvs"]
 
-[ext_resource type="Script" path="res://Scripts/npc_task_state.gd" id="1_my185"]
+[ext_resource type="Script" path="res://Scripts/npc_task_state.gd" id="1_aasw3"]
 
 [node name="NPCTaskState" type="Node2D"]
-script = ExtResource("1_my185")
+script = ExtResource("1_aasw3")
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -14,12 +14,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ProgressBar" type="ProgressBar" parent="Control"]
-z_index = -1
+z_index = 200
 layout_mode = 0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = -5.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = -32.0
 max_value = 1.0
 show_percentage = false
 

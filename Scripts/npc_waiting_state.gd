@@ -2,7 +2,7 @@ extends BaseState
 
 @onready var timer = $Timer
 
-func enter(param: Dictionary):
+func enter(_param: Dictionary):
 	var wait_time = randf_range(2.0, 5.0)
 	timer.wait_time = wait_time
 #	print("waiting for ", wait_time)
